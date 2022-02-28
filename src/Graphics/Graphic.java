@@ -78,7 +78,7 @@ public class Graphic extends JFrame{
 	
 	private int isSupported(int x, int y, int bits, DisplayMode[] dms){
 		for(int i = 0; i < dms.length; i++){
-			if(dms[i].getHeight() == y && dms[i].getWidth() == x && dms[i].getBitDepth() == bits){
+			if(dms[i].getHeight() == y && dms[i].getWidth() == x && dms[i].getBitDepth() == bits || dms[i].getBitDepth() == DisplayMode.BIT_DEPTH_MULTI){ // For anyone looking at this line, I added "|| dms[i].getBitDepth() == DisplayMode.BIT_DEPTH_MULTI" to have Linux Support
 				if(gd.isDisplayChangeSupported() == true)
 					return i;
 			}

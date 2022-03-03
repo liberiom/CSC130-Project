@@ -1,1 +1,2 @@
 Art/f.png*f0
+Art/greenguy.png*greenguy

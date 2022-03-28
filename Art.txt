@@ -1,2 +1,10 @@
 Art/f.png*f0
 Art/greenguy.png*greenguy
+Art/frame1.png*frame1
+Art/frame2.png*frame2
+Art/frame3.png*frame3
+Art/frame4.png*frame4
+Art/frame5.png*frame5
+Art/frame6.png*frame6
+Art/frame7.png*frame7
+Art/frame8.png*frame8

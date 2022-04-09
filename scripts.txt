@@ -1,0 +1,5 @@
+string1*BlueMan: 'Let us head forth'
+string2*BlueMan: 'Victory is within an arms reach'
+string3*BlueMan: 'Do not fail this mission'
+string4*BlueMan: 'We must find somewhere safe to hide'
+string5*BlueMan: 'Time is of the essence. We must find what we're looking for, and fast'

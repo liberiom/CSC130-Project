@@ -15,9 +15,11 @@ import timer.stopWatchX;
 
 public class Main{
 	// Fields (Static) below...
-	
+	private static HashMap<String, String> map = new HashMap<>();
 	public static stopWatchX timer = new stopWatchX(100);
+	private static EZFileRead ezr = new EZFileRead("scripts.txt");
 	private int currentText = 0;
+	
 	// End Static fields...
 	public static void main(String[] args) {
 		Control ctrl = new Control();				// Do NOT remove!
@@ -26,13 +28,17 @@ public class Main{
 	
 	/* This is your access to things BEFORE the game loop starts */
 	public static void start(){
-		HashMap<String, String> map = new HashMap<>();
+		String raw, key, value;
+		StringTokenizer st; 
+		/* raw, StringTokenizer, string key/value, insert both key and value strings in hashmap 
+		 * 
 		String raw = "", key, value;
 		StringTokenizer st = new StringTokenizer(raw, "*");
-		EZFileRead ezr = new EZFileRead("scripts.txt");
 		int lines = ezr.getNumLines();
-		for (int i = 0; i < lines; i++) {
-			raw = ezr.getLine(i);
+		 */
+		
+		for (int i = 0; i < ezr.getNumLines(); i++) {
+			st = new StringTokenizer(ezr.getNextLine(), "*");
 			key = st.nextToken();
 			value = st.nextToken();
 			map.put(key, value);

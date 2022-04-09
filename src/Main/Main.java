@@ -17,6 +17,7 @@ public class Main{
 	// Fields (Static) below...
 	
 	public static stopWatchX timer = new stopWatchX(100);
+	private int currentText = 0;
 	// End Static fields...
 	public static void main(String[] args) {
 		Control ctrl = new Control();				// Do NOT remove!

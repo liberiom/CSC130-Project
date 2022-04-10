@@ -17,6 +17,7 @@ public class Main{
 	// Fields (Static) below...
 	private static HashMap<String, String> map = new HashMap<>();
 	public static stopWatchX timer = new stopWatchX(2000);
+	private static Color white = new Color(255, 255, 255);
 	private static EZFileRead ezr = new EZFileRead("scripts.txt");
 	private static int currentText = 1;
 	
@@ -40,7 +41,7 @@ public class Main{
 	
 	/* This is your access to the "game loop" (It is a "callback" method from the Control class (do NOT modify that class!))*/
 	public static void update(Control ctrl) {
-		ctrl.drawString(100, 250, map.get("string" + currentText), null);
+		ctrl.drawString(100, 250, map.get("string" + currentText), white);
 		if (timer.isTimeUp()) {
 			timer.resetWatch();
 			if (currentText == 5) {

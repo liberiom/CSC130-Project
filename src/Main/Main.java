@@ -16,7 +16,7 @@ import timer.stopWatchX;
 public class Main{
 	// Fields (Static) below...
 	private static HashMap<String, String> map = new HashMap<>();
-	public static stopWatchX timer = new stopWatchX(2000);
+	public static stopWatchX timer = new stopWatchX(3000);
 	private static Color white = new Color(255, 255, 255);
 	private static EZFileRead ezr = new EZFileRead("scripts.txt");
 	private static int currentText = 1;

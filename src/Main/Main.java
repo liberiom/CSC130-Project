@@ -16,9 +16,9 @@ import timer.stopWatchX;
 public class Main{
 	// Fields (Static) below...
 	private static HashMap<String, String> map = new HashMap<>();
-	public static stopWatchX timer = new stopWatchX(100);
+	public static stopWatchX timer = new stopWatchX(2000);
 	private static EZFileRead ezr = new EZFileRead("scripts.txt");
-	private int currentText = 0;
+	private static int currentText = 1;
 	
 	// End Static fields...
 	public static void main(String[] args) {
@@ -29,29 +29,25 @@ public class Main{
 	/* This is your access to things BEFORE the game loop starts */
 	public static void start(){
 		String raw, key, value;
-		StringTokenizer st; 
-		/* raw, StringTokenizer, string key/value, insert both key and value strings in hashmap 
-		 * 
-		String raw = "", key, value;
-		StringTokenizer st = new StringTokenizer(raw, "*");
-		int lines = ezr.getNumLines();
-		 */
-		
+		StringTokenizer st; 		
 		for (int i = 0; i < ezr.getNumLines(); i++) {
 			st = new StringTokenizer(ezr.getNextLine(), "*");
 			key = st.nextToken();
 			value = st.nextToken();
 			map.put(key, value);
 		}
-		
-		// Debugging
-		for (int i = 1; i <= map.size(); i++) {
-			System.out.println(map.get("string" + i));
-		}
 	} 
 	
 	/* This is your access to the "game loop" (It is a "callback" method from the Control class (do NOT modify that class!))*/
 	public static void update(Control ctrl) {
-		
+		ctrl.drawString(100, 250, map.get("string" + currentText), null);
+		if (timer.isTimeUp()) {
+			timer.resetWatch();
+			if (currentText == 5) {
+				currentText = 1;
+			} else {
+				currentText++;
+			} 
+		}
 	}
 }

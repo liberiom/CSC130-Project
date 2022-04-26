@@ -24,6 +24,25 @@ public class KeyProcessor{
 		case '%':								// ESC key
 			System.exit(0);
 			break;
+		case 'w':
+			Main.trigger = "w is triggered";
+			break;
+		
+		case 'a':
+			Main.trigger = "a is triggered";
+			break;
+			
+		case 's':
+			Main.trigger = "s is triggered";
+			break;
+			
+		case 'd':
+			Main.trigger = "d is triggered";
+			break;
+		
+		case '$':
+			Main.trigger = "space bar is triggered";
+			break;
 			
 		case 'm':
 			// For mouse coordinates

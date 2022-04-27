@@ -18,6 +18,7 @@ public class Main{
 	public static stopWatchX timer = new stopWatchX(3000);
 	private static Color white = new Color(255, 255, 255);
 	public static String trigger = "";
+	private static Vector2D vector2d = new Vector2D(100, 1000);
 
 	// End Static fields...
 	public static void main(String[] args) {
@@ -32,6 +33,6 @@ public class Main{
 	
 	/* This is your access to the "game loop" (It is a "callback" method from the Control class (do NOT modify that class!))*/
 	public static void update(Control ctrl) {
-		ctrl.drawString(100, 250, trigger, white);
+		ctrl.addSpriteToFrontBuffer(vector2d.getX(), vector2d.getY(), "frame1");
 	}
 }

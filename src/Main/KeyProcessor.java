@@ -25,11 +25,11 @@ public class KeyProcessor{
 			System.exit(0);
 			break;
 		case 'w':
-			changePosition(-(Main.speed), 0);
+			changePosition(0, -(Main.speed));
 			break;
 		
 		case 'a':
-			changePosition(0, -(Main.speed));
+			changePosition(-(Main.speed), 0);
 			break;
 			
 		case 's':

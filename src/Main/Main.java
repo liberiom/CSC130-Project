@@ -18,7 +18,7 @@ public class Main{
 	public static stopWatchX timer = new stopWatchX(3000);
 	private static Color white = new Color(255, 255, 255);
 	public static String trigger = "";
-	private static Vector2D vector2d = new Vector2D(100, 1000);
+	private static Vector2D vector2d = new Vector2D(1100, 500);
 
 	// End Static fields...
 	public static void main(String[] args) {

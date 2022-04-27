@@ -19,8 +19,7 @@ public class Main{
 	private static Color white = new Color(255, 255, 255);
 	public static String trigger = "";
 	public static Vector2D vector2d = new Vector2D(0, 0);
-	public static int speed = 100; 
-	public static boolean isRight = false, isLeft = false, isUp = false, isDown = false;
+	public static int speed = 10; 
 
 	// End Static fields...
 	public static void main(String[] args) {
@@ -36,15 +35,5 @@ public class Main{
 	/* This is your access to the "game loop" (It is a "callback" method from the Control class (do NOT modify that class!))*/
 	public static void update(Control ctrl) {
 		ctrl.addSpriteToFrontBuffer(vector2d.getX(), vector2d.getY(), "frame1");
-		/*
-		 * if (isRight) {
-			vector2d.setX(vector2d.getX() + speed);
-		}
-		if (isLeft) {
-			vector2d.setX(vector2d.getX() - speed);
-		}
-		 */
-		
-		 
 	}
 }

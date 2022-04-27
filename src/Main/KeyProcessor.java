@@ -51,12 +51,6 @@ public class KeyProcessor{
 		}
 	}
 	
-	private static void changeDirection(boolean left, boolean right, boolean up, boolean down) {
-		Main.isLeft = left;
-		Main.isRight = right;
-		Main.isUp = up;
-		Main.isDown = down;
-	}
 	
 	private static void changePosition(int xMove, int yMove) {
 		Main.vector2d.setX(Main.vector2d.getX() + xMove);

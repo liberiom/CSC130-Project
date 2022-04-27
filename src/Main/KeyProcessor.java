@@ -25,19 +25,19 @@ public class KeyProcessor{
 			System.exit(0);
 			break;
 		case 'w':
-			Main.trigger = "w is triggered";
+			changePosition(-(Main.speed), 0);
 			break;
 		
 		case 'a':
-			Main.trigger = "a is triggered";
+			changePosition(0, -(Main.speed));
 			break;
 			
 		case 's':
-			Main.trigger = "s is triggered";
+			changePosition(0, Main.speed);
 			break;
 			
 		case 'd':
-			Main.trigger = "d is triggered";
+			changePosition(Main.speed, 0);
 			break;
 		
 		case '$':
@@ -49,5 +49,10 @@ public class KeyProcessor{
 			Control.isMouseCoordsDisplayed = !Control.isMouseCoordsDisplayed;
 			break;
 		}
+	}
+	
+	private static void changePosition(int xMove, int yMove) {
+		Main.vector2d.setX(Main.vector2d.getX() + xMove);
+		Main.vector2d.setY(Main.vector2d.getY() + yMove);
 	}
 }

@@ -8,7 +8,7 @@ import timer.stopWatchX;
 public class KeyProcessor{
 	// Static Fields
 	private static char last = ' ';			// For debouncing purposes
-	private static stopWatchX sw = new stopWatchX(250);
+	private static stopWatchX sw = new stopWatchX(50);
 	
 	// Static Method(s)
 	public static void processKey(char key){
@@ -51,6 +51,12 @@ public class KeyProcessor{
 		}
 	}
 	
+	private static void changeDirection(boolean left, boolean right, boolean up, boolean down) {
+		Main.isLeft = left;
+		Main.isRight = right;
+		Main.isUp = up;
+		Main.isDown = down;
+	}
 	
 	private static void changePosition(int xMove, int yMove) {
 		Main.vector2d.setX(Main.vector2d.getX() + xMove);

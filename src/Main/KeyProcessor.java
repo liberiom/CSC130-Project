@@ -53,8 +53,8 @@ public class KeyProcessor{
 	
 	
 	private static void changePosition(int xMove, int yMove) {
-		Main.vector2d.setX(Main.vector2d.getX() + xMove);
-		Main.vector2d.setY(Main.vector2d.getY() + yMove);
+		Main.startPosition.setX(Main.startPosition.getX() + xMove);
+		Main.startPosition.setY(Main.startPosition.getY() + yMove);
 	}
 
 }

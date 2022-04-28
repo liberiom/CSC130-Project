@@ -21,14 +21,14 @@ public class Main{
 	public static String trigger = "";
 	public static Vector2D startPosition = new Vector2D(500, 500);
 	public static Vector2D dummyVector2D = new Vector2D(0, 0);
-	private static Vector2D lastPosition = new Vector2D(0,0);
 	public static int speed = 10;
 	public static boolean visible = true;
 	public static boolean isRight = true;
 	public static Queue<spriteInfo> spritesRight = new LinkedList<spriteInfo>();
 	public static Queue<spriteInfo> spritesLeft = new LinkedList<spriteInfo>();
 	public static ArrayList<BoundingBox> boxes = new ArrayList<BoundingBox>();
-	public static BoundingBox dummyBox = new BoundingBox(1000, 100, 10, 100);
+	public static spriteInfo playerSprite = new spriteInfo(startPosition, "frame1");
+	public static BoundingBox playerBox = new BoundingBox(playerSprite, 128);
 	
 	// End Static fields...
 	public static void main(String[] args) {
@@ -58,15 +58,15 @@ public class Main{
 		} else {
 			ctrl.addSpriteToFrontBuffer(startPosition.getX(), startPosition.getY(), spritesLeft.peek().getTag());
 		}
+		System.out.println(playerBox.toString());
 		
 		/*
 		 * Checking the player's collision against walls, doors, enemies, and chests
 		 */
 		for (int i = 0; i < boxes.size(); i++) {
-			if (checkCollision(dummyBox, boxes.get(i))) {
-				lastPosition.setX(startPosition.getX());
-				lastPosition.setY(startPosition.getY());
-				reboundPlayer(lastPosition);
+			if (checkCollision(playerBox, boxes.get(i))) {
+				System.out.println("COLLISION DETECTED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+				// reboundPlayer();
 			}
 		}
 		
@@ -84,7 +84,7 @@ public class Main{
 		return false;
 	}
 	
-	private static void reboundPlayer(Vector2D lastPosition) {
-		startPosition = lastPosition;
+	private static void reboundPlayer() {
+		
 	}
 }

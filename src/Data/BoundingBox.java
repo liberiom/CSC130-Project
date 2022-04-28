@@ -4,23 +4,25 @@ public class BoundingBox {
 	private spriteInfo sprite;
 	private int x1, x2, y1, y2, widthAndHeight;
 	
-	/*
 	public BoundingBox(spriteInfo sprite, int widthAndHeight) {
-		sprite = this.sprite;
-		widthAndHeight = this.widthAndHeight;
-		x1 = sprite.getCoords().getX();
-		y1 = sprite.getCoords().getY();
-		x2 = sprite.getCoords().getX() + widthAndHeight;
-		y2 = sprite.getCoords().getY() + widthAndHeight;
+		this.sprite = sprite;
+		this.widthAndHeight = widthAndHeight;
+		this.x1 = sprite.getCoords().getX();
+		this.y1 = sprite.getCoords().getY();
+		this.x2 = sprite.getCoords().getX() + widthAndHeight;
+		this.y2 = sprite.getCoords().getY() + widthAndHeight;
 	}
-	*/
 	
 	// This bounding box is specifically made for the outer barriers 
 	public BoundingBox(int x1, int x2, int y1, int y2) {
-		x1 = this.x1;
-		x2 = this.x2;
-		y1 = this.y1;
-		y2 = this.y2;
+		this.x1 = x1;
+		this.x2 = x2;
+		this.y1 = y1;
+		this.y2 = y2;
+	}
+	
+	public String toString() {
+		return "" + x1 + " " + x2 + " " + y1 + " " + y2;
 	}
 	
 	public int getX1(){

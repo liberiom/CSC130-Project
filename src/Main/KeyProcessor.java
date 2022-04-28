@@ -38,6 +38,7 @@ public class KeyProcessor{
 			
 		case 'd':
 			changePosition(Main.speed, 0);
+			Main.spritesRight.add(Main.spritesRight.remove());
 			break;
 		
 		case '$':

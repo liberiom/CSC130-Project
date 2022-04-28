@@ -25,7 +25,6 @@ public class Main{
 	public static boolean isRight = true;
 	public static Queue<spriteInfo> spritesRight = new LinkedList<spriteInfo>();
 	public static Queue<spriteInfo> spritesLeft = new LinkedList<spriteInfo>();
-	public static boolean isRight = true;
 	
 	// End Static fields...
 	public static void main(String[] args) {

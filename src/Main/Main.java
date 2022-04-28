@@ -29,7 +29,10 @@ public class Main{
 	public static Queue<spriteInfo> spritesLeft = new LinkedList<spriteInfo>();
 	public static ArrayList<BoundingBox> boxes = new ArrayList<BoundingBox>();
 	private static spriteInfo playerStartingSprite = new spriteInfo(startPosition, "frame1");
-	public static BoundingBox playerBox = new BoundingBox(playerStartingSprite, 128);
+	public static BoundingBox playerBox = new BoundingBox(playerStartingSprite.getCoords().getX(), 
+				playerStartingSprite.getCoords().getX() + 128,
+				playerStartingSprite.getCoords().getY(),
+				playerStartingSprite.getCoords().getY() + 128);
 	
 	// End Static fields...
 	public static void main(String[] args) {
@@ -43,7 +46,10 @@ public class Main{
 			spritesRight.add(new spriteInfo(dummyVector2D, "frame" + i));
 			spritesLeft.add(new spriteInfo(dummyVector2D, "flippedframe" + i));
 		}
+	
+		// Player Box
 		
+				
 		// Adding BoundingBoxes ArrayList
 		boxes.add(new BoundingBox(0, 18, 0, 11));
 		
@@ -58,7 +64,6 @@ public class Main{
 			ctrl.addSpriteToFrontBuffer(startPosition.getX(), startPosition.getY(), spritesLeft.peek().getTag());
 			playerStartingSprite.setTag(spritesLeft.peek().getTag());
 		}
-		updateBoundingBoxOfSprite(playerStartingSprite, playerBox);
 		
 		/*
 		 * Checking the player's collision against walls, doors, enemies, and chests
@@ -72,12 +77,7 @@ public class Main{
 		}
 		
 	}
-	public static void updateBoundingBoxOfSprite(spriteInfo sprite, BoundingBox spriteBox) {
-		spriteBox.setX1(sprite.getCoords().getX());
-		spriteBox.setX2(spriteBox.getX1() + spriteBox.getWidthAndHeight());
-		spriteBox.setY1(sprite.getCoords().getY());
-		spriteBox.setY2(spriteBox.getY1() + spriteBox.getWidthAndHeight());
-	}
+	
 	private static boolean checkCollision(BoundingBox box1, BoundingBox box2) {
 		final boolean COLLISION_DETECTED = (box1.getX1() > box2.getX2()) 
 				|| (box1.getX2() < box2.getX1()) 
@@ -94,4 +94,12 @@ public class Main{
 		startPosition = lastPosition;
 	}
 	
+	/*
+	public static void updateBoundingBoxOfSprite(spriteInfo sprite, BoundingBox spriteBox) {
+		spriteBox.setX1(sprite.getCoords().getX());
+		spriteBox.setX2(spriteBox.getX1() + spriteBox.getWidthAndHeight());
+		spriteBox.setY1(sprite.getCoords().getY());
+		spriteBox.setY2(spriteBox.getY1() + spriteBox.getWidthAndHeight());
+	}
+	*/
 }

@@ -4,6 +4,7 @@ public class BoundingBox {
 	private spriteInfo sprite;
 	private int x1, x2, y1, y2, widthAndHeight;
 	
+	/*
 	public BoundingBox(spriteInfo sprite, int widthAndHeight) {
 		sprite = this.sprite;
 		widthAndHeight = this.widthAndHeight;
@@ -12,6 +13,7 @@ public class BoundingBox {
 		x2 = sprite.getCoords().getX() + widthAndHeight;
 		y2 = sprite.getCoords().getY() + widthAndHeight;
 	}
+	*/
 	
 	// This bounding box is specifically made for the outer barriers 
 	public BoundingBox(int x1, int x2, int y1, int y2) {

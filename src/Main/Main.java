@@ -38,6 +38,14 @@ public class Main{
 			spritesRight.add(new spriteInfo(new Vector2D(0, 0), "frame" + i));
 			spritesLeft.add(new spriteInfo(new Vector2D(0, 0), "flippedframe" + i));
 		}
+		
+		for (int i = 1; i <= 8; i++) {
+			System.out.println(spritesRight.get(i).getTag());
+		}
+		
+		for (int i = 1; i <= 8; i++) {
+			System.out.println(spritesLeft.get(i).getTag());
+		}
 	} 
 	
 	/* This is your access to the "game loop" (It is a "callback" method from the Control class (do NOT modify that class!))*/

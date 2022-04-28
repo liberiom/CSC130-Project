@@ -2,10 +2,11 @@ package Data;
 
 public class BoundingBox {
 	private spriteInfo sprite;
-	private int x1, x2, y1, y2;
+	private int x1, x2, y1, y2, widthAndHeight;
 	
 	public BoundingBox(spriteInfo sprite, int widthAndHeight) {
 		sprite = this.sprite;
+		widthAndHeight = this.widthAndHeight;
 		x1 = sprite.getCoords().getX();
 		y1 = sprite.getCoords().getY();
 		x2 = sprite.getCoords().getX() + widthAndHeight;
@@ -34,6 +35,10 @@ public class BoundingBox {
 	
 	public int getY2(){
 		return y2;
+	}
+	
+	public int getWidthAndHeight() {
+		return widthAndHeight;
 	}
 	
 	public void setX1(int x1){

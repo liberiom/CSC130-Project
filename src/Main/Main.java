@@ -58,8 +58,10 @@ public class Main{
 		} else {
 			ctrl.addSpriteToFrontBuffer(startPosition.getX(), startPosition.getY(), spritesLeft.peek().getTag());
 		}
+		// Updating the player's BoundingBox
 		playerBox.setX1(playerSprite.getCoords().getX());
-		
+		playerBox.setX2(playerBox.getX1() + playerBox.getWidthAndHeight());
+		playerBox.setY1(playerSprite.getCoords());
 		// For deubgging purposes
 		System.out.println(playerBox.toString());
 		

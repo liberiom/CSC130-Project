@@ -19,8 +19,11 @@ public class Main{
 	private static Color white = new Color(255, 255, 255);
 	public static String trigger = "";
 	public static Vector2D vector2d = new Vector2D(0, 0);
-	public static int speed = 10; 
-
+	public static int speed = 10;
+	public static boolean visible = true;
+	public static boolean isRight = true;
+	public static ArrayList<spriteInfo> sprites = new ArrayList<spriteInfo>();
+	
 	// End Static fields...
 	public static void main(String[] args) {
 		Control ctrl = new Control();				// Do NOT remove!
@@ -29,7 +32,7 @@ public class Main{
 	
 	/* This is your access to things BEFORE the game loop starts */
 	public static void start(){
-	
+		
 	} 
 	
 	/* This is your access to the "game loop" (It is a "callback" method from the Control class (do NOT modify that class!))*/

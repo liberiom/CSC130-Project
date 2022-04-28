@@ -81,15 +81,15 @@ public class Main{
 	}
 	
 	private static boolean checkCollision(BoundingBox box1, BoundingBox box2) {
-		final boolean COLLISION_DETECTED = (box1.getX1() > box2.getX2()) 
-				&& (box1.getX2() < box2.getX1()) 
-				&& (box1.getY1() > box2.getY2())
-				&& (box1.getY2() < box2.getY1());
+		final boolean COLLISION_NOT_DETECTED = (box1.getX1() > box2.getX2()) 
+				|| (box1.getX2() < box2.getX1()) 
+				|| (box1.getY1() > box2.getY2())
+				|| (box1.getY2() < box2.getY1());
 		
-		if (COLLISION_DETECTED) {
-			return true;
+		if (COLLISION_NOT_DETECTED) {
+			return false;
 		}
-		return false;
+		return true;
 	}
 	
 	private static void reboundPlayer() {

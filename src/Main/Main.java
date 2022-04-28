@@ -22,7 +22,9 @@ public class Main{
 	public static int speed = 10;
 	public static boolean visible = true;
 	public static boolean isRight = true;
-	public static ArrayList<spriteInfo> sprites = new ArrayList<spriteInfo>();
+	public static ArrayList<spriteInfo> spritesRight = new ArrayList<spriteInfo>();
+	public static ArrayList<spriteInfo> spritesLeft = new ArrayList<spriteInfo>();
+	public static int currentSpriteIndex = 0;
 	
 	// End Static fields...
 	public static void main(String[] args) {
@@ -32,7 +34,12 @@ public class Main{
 	
 	/* This is your access to things BEFORE the game loop starts */
 	public static void start(){
-		
+		for (int i = 1; i <= 8; i++) {
+			spritesRight.add(new spriteInfo("frame" + i));
+			spritesLeft.add(new spriteInfo("flippedframe" + i));
+		}
+		System.out.println(spritesRight.toString());
+		System.out.println(spritesLeft.toString());
 	} 
 	
 	/* This is your access to the "game loop" (It is a "callback" method from the Control class (do NOT modify that class!))*/

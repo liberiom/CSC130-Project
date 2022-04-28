@@ -28,12 +28,7 @@ public class Main{
 	public static Queue<spriteInfo> spritesRight = new LinkedList<spriteInfo>();
 	public static Queue<spriteInfo> spritesLeft = new LinkedList<spriteInfo>();
 	public static ArrayList<BoundingBox> boxes = new ArrayList<BoundingBox>();
-	private static spriteInfo playerStartingSprite = new spriteInfo(startPosition, "frame1");
-	private static int currentX1 = playerStartingSprite.getCoords().getX();
-	private static int currentX2 = playerStartingSprite.getCoords().getX() + 128;
-	private static int currentY1 = playerStartingSprite.getCoords().getY();
-	private static int currentY2 = playerStartingSprite.getCoords().getY() + 128;
-	public static BoundingBox playerBox = new BoundingBox(currentX1, currentX2, currentY1, currentY2);
+	
 	
 	// End Static fields...
 	public static void main(String[] args) {
@@ -60,12 +55,9 @@ public class Main{
 	public static void update(Control ctrl) {
 		if (isRight) {
 			ctrl.addSpriteToFrontBuffer(startPosition.getX(), startPosition.getY(), spritesRight.peek().getTag());
-			playerStartingSprite.setTag(spritesRight.peek().getTag());
 		} else {
 			ctrl.addSpriteToFrontBuffer(startPosition.getX(), startPosition.getY(), spritesLeft.peek().getTag());
-			playerStartingSprite.setTag(spritesLeft.peek().getTag());
 		}
-		updatePlayerBoundingBox(playerStartingSprite, playerBox, 128);
 		
 		/*
 		 * Checking the player's collision against walls, doors, enemies, and chests
@@ -95,13 +87,4 @@ public class Main{
 	private static void reboundPlayer(Vector2D lastPosition) {
 		startPosition = lastPosition;
 	}
-	
-	
-	public static void updatePlayerBoundingBox(spriteInfo sprite, BoundingBox box, int widthAndHeight) {
-		box.setX1(sprite.getCoords().getX());
-		box.setX2(sprite.getCoords().getX() + widthAndHeight);
-		box.setY1(sprite.getCoords().getY());
-		box.setY2(sprite.getCoords().getY() + widthAndHeight);
-	}
-	
 }

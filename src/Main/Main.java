@@ -18,13 +18,12 @@ public class Main{
 	public static stopWatchX timer = new stopWatchX(3000);
 	private static Color white = new Color(255, 255, 255);
 	public static String trigger = "";
-	public static Vector2D vector2d = new Vector2D(0, 0);
+	private static Vector2D startPosition = new Vector2D(500, 500);
+	public static Vector2D dummyVector2D = new Vector2D(0, 0);
 	public static int speed = 10;
 	public static boolean visible = true;
 	public static boolean isRight = true;
-	public static ArrayList<spriteInfo> spritesRight = new ArrayList<spriteInfo>();
-	public static ArrayList<spriteInfo> spritesLeft = new ArrayList<spriteInfo>();
-	public static int currentSpriteIndex = 0;
+	public static Queue<spriteInfo> spritesRight = new LinkedList<spriteInfo>();
 	
 	// End Static fields...
 	public static void main(String[] args) {
@@ -35,21 +34,12 @@ public class Main{
 	/* This is your access to things BEFORE the game loop starts */
 	public static void start(){
 		for (int i = 1; i <= 8; i++) {
-			spritesRight.add(new spriteInfo(new Vector2D(0, 0), "frame" + i));
-			spritesLeft.add(new spriteInfo(new Vector2D(0, 0), "flippedframe" + i));
-		}
-		
-		for (int i = 1; i <= 8; i++) {
-			System.out.println(spritesRight.get(i).getTag());
-		}
-		
-		for (int i = 1; i <= 8; i++) {
-			System.out.println(spritesLeft.get(i).getTag());
+			spritesRight.add(new spriteInfo(dummyVector2D, "frame" + i));
 		}
 	} 
 	
 	/* This is your access to the "game loop" (It is a "callback" method from the Control class (do NOT modify that class!))*/
 	public static void update(Control ctrl) {
-		ctrl.addSpriteToFrontBuffer(vector2d.getX(), vector2d.getY(), "frame1");
+		ctrl.addSpriteToFrontBuffer(startPosition.getX(), startPosition.getY(), spritesRight.peek().getTag());
 	}
 }

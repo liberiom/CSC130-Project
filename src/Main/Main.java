@@ -47,7 +47,7 @@ public class Main{
 		playerBox = new BoundingBox(playerSprite, 128);
 				
 		// Adding BoundingBoxes ArrayList
-		boxes.add(new BoundingBox(0, 18, 0, 11));
+		boxes.add(new BoundingBox(0, 1920, 0, 11));
 		
 	} 
 	

@@ -28,7 +28,7 @@ public class Main{
 	public static Queue<spriteInfo> spritesRight = new LinkedList<spriteInfo>();
 	public static Queue<spriteInfo> spritesLeft = new LinkedList<spriteInfo>();
 	public static ArrayList<BoundingBox> boxes = new ArrayList<BoundingBox>();
-	
+	public static BoundingBox dummyBox = new BoundingBox(1000, 100, 10, 100);
 	
 	// End Static fields...
 	public static void main(String[] args) {
@@ -63,7 +63,7 @@ public class Main{
 		 * Checking the player's collision against walls, doors, enemies, and chests
 		 */
 		for (int i = 0; i < boxes.size(); i++) {
-			if (checkCollision(playerBox, boxes.get(i))) {
+			if (checkCollision(dummyBox, boxes.get(i))) {
 				lastPosition.setX(startPosition.getX());
 				lastPosition.setY(startPosition.getY());
 				reboundPlayer(lastPosition);

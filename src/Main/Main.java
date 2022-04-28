@@ -61,7 +61,9 @@ public class Main{
 		// Updating the player's BoundingBox
 		playerBox.setX1(playerSprite.getCoords().getX());
 		playerBox.setX2(playerBox.getX1() + playerBox.getWidthAndHeight());
-		playerBox.setY1(playerSprite.getCoords());
+		playerBox.setY1(playerSprite.getCoords().getY());
+		playerBox.setY2(playerBox.getY1() + playerBox.getWidthAndHeight());
+		
 		// For deubgging purposes
 		System.out.println(playerBox.toString());
 		

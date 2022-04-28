@@ -58,7 +58,13 @@ public class Main{
 		} else {
 			ctrl.addSpriteToFrontBuffer(startPosition.getX(), startPosition.getY(), spritesLeft.peek().getTag());
 		}
+		
+		// Updating Boxes
+		moveBoundingBox(playerSprite, playerBox);
+		
+		// For deubgging purposes
 		System.out.println(playerBox.toString());
+		
 		
 		/*
 		 * Checking the player's collision against walls, doors, enemies, and chests
@@ -74,9 +80,9 @@ public class Main{
 	
 	private static boolean checkCollision(BoundingBox box1, BoundingBox box2) {
 		final boolean COLLISION_DETECTED = (box1.getX1() > box2.getX2()) 
-				|| (box1.getX2() < box2.getX1()) 
-				|| (box1.getY1() > box2.getY2())
-				|| (box1.getY2() < box2.getY1());
+				&& (box1.getX2() < box2.getX1()) 
+				&& (box1.getY1() > box2.getY2())
+				&& (box1.getY2() < box2.getY1());
 		
 		if (COLLISION_DETECTED) {
 			return true;
@@ -86,5 +92,13 @@ public class Main{
 	
 	private static void reboundPlayer() {
 		
+	}
+	
+	private static void moveBoundingBox(spriteInfo sprite, BoundingBox box) {
+		int widthAndHeight = box.getX2() - box.getX1();
+		box.setX1(sprite.getCoords().getX());
+		box.setX2(sprite.getCoords().getX() + widthAndHeight);
+		box.setY1(sprite.getCoords().getY());
+		box.setY2(sprite.getCoords().getY() + widthAndHeight);
 	}
 }

@@ -15,11 +15,6 @@ public class spriteInfo {
 		this.tag = tag; 
 	}
 	
-	// Adding another constructor
-	public spriteInfo(String tag) {
-		this.tag = tag;
-	}
-	
 	// Methods
 	public String getTag(){
 		// TODO: Remove my placeholder code below (which is there to prevent an error) and replace it with returning the value of your private field tag

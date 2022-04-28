@@ -27,17 +27,23 @@ public class KeyProcessor{
 		case 'w':
 			changePosition(0, -(Main.speed));
 			changeToNextFrame();
+			// Main.playerBox.setY1(Main.playerBox.getY1() - Main.speed);
+			// Main.playerBox.setY2(Main.playerBox.getY1() + Main.playerBox.getWidthAndHeight());
 			break;
 		
 		case 'a':
 			changePosition(-(Main.speed), 0);
 			changeToNextFrame();
 			Main.isRight = false;
+			// Main.playerBox.setX1(Main.playerBox.getX1() - Main.speed);
+			// Main.playerBox.setX2(Main.playerBox.getX1() + Main.playerBox.getWidthAndHeight());
 			break;
 			
 		case 's':
 			changePosition(0, Main.speed);
 			changeToNextFrame();
+			// Main.playerBox.setY1(Main.playerBox.getY1() + Main.speed);
+			// Main.playerBox.setY2(Main.playerBox.getY1() + Main.playerBox.getWidthAndHeight());
 			break;
 			
 		case 'd':

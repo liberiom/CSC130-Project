@@ -28,7 +28,7 @@ public class Main{
 	public static Queue<spriteInfo> spritesLeft = new LinkedList<spriteInfo>();
 	public static ArrayList<BoundingBox> boxes = new ArrayList<BoundingBox>();
 	public static spriteInfo playerSprite = new spriteInfo(startPosition, "frame1");
-	public static BoundingBox playerBox = new BoundingBox(playerSprite, 128);
+	public static BoundingBox playerBox;
 	
 	// End Static fields...
 	public static void main(String[] args) {
@@ -44,7 +44,7 @@ public class Main{
 		}
 	
 		// Player Box
-		
+		playerBox = new BoundingBox(playerSprite, 128);
 				
 		// Adding BoundingBoxes ArrayList
 		boxes.add(new BoundingBox(0, 18, 0, 11));
@@ -58,9 +58,7 @@ public class Main{
 		} else {
 			ctrl.addSpriteToFrontBuffer(startPosition.getX(), startPosition.getY(), spritesLeft.peek().getTag());
 		}
-		
-		// Updating Boxes
-		moveBoundingBox(playerSprite, playerBox);
+		playerBox.setX1(playerSprite.getCoords().getX());
 		
 		// For deubgging purposes
 		System.out.println(playerBox.toString());
@@ -92,13 +90,5 @@ public class Main{
 	
 	private static void reboundPlayer() {
 		
-	}
-	
-	private static void moveBoundingBox(spriteInfo sprite, BoundingBox box) {
-		int widthAndHeight = box.getX2() - box.getX1();
-		box.setX1(sprite.getCoords().getX());
-		box.setX2(sprite.getCoords().getX() + widthAndHeight);
-		box.setY1(sprite.getCoords().getY());
-		box.setY2(sprite.getCoords().getY() + widthAndHeight);
 	}
 }

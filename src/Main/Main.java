@@ -24,6 +24,8 @@ public class Main{
 	public static boolean visible = true;
 	public static boolean isRight = true;
 	public static Queue<spriteInfo> spritesRight = new LinkedList<spriteInfo>();
+	public static Queue<spriteInfo> spritesLeft = new LinkedList<spriteInfo>();
+	public static boolean isRight = true;
 	
 	// End Static fields...
 	public static void main(String[] args) {
@@ -35,11 +37,16 @@ public class Main{
 	public static void start(){
 		for (int i = 1; i <= 8; i++) {
 			spritesRight.add(new spriteInfo(dummyVector2D, "frame" + i));
+			spritesLeft.add(new spriteInfo(dummyVector2D, "flippedframe" + i));
 		}
 	} 
 	
 	/* This is your access to the "game loop" (It is a "callback" method from the Control class (do NOT modify that class!))*/
 	public static void update(Control ctrl) {
-		ctrl.addSpriteToFrontBuffer(startPosition.getX(), startPosition.getY(), spritesRight.peek().getTag());
+		if (isRight) {
+			ctrl.addSpriteToFrontBuffer(startPosition.getX(), startPosition.getY(), spritesRight.peek().getTag());
+		} else {
+			ctrl.addSpriteToFrontBuffer(startPosition.getX(), startPosition.getY(), spritesLeft.peek().getTag());
+		}
 	}
 }

@@ -26,21 +26,26 @@ public class KeyProcessor{
 			break;
 		case 'w':
 			changePosition(0, -(Main.speed));
+			changeToNextFrame();
 			break;
 		
 		case 'a':
 			changePosition(-(Main.speed), 0);
+			changeToNextFrame();
+			Main.isRight = false;
 			break;
 			
 		case 's':
 			changePosition(0, Main.speed);
+			changeToNextFrame();
 			break;
 			
 		case 'd':
 			changePosition(Main.speed, 0);
-			Main.spritesRight.add(Main.spritesRight.remove());
+			changeToNextFrame();
+			Main.isRight = true;
 			break;
-		
+			
 		case '$':
 			Main.trigger = "space bar is triggered";
 			break;
@@ -57,5 +62,8 @@ public class KeyProcessor{
 		Main.startPosition.setX(Main.startPosition.getX() + xMove);
 		Main.startPosition.setY(Main.startPosition.getY() + yMove);
 	}
-
+	private static void changeToNextFrame() {
+		Main.spritesRight.add(Main.spritesRight.remove());
+		Main.spritesLeft.add(Main.spritesLeft.remove());
+	}
 }

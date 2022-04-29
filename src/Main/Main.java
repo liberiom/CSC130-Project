@@ -74,7 +74,7 @@ public class Main{
 		for (int i = 0; i < boxes.size(); i++) {
 			if (checkCollision(playerBox, boxes.get(i))) {
 				System.out.println("COLLISION DETECTED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-				// reboundPlayer();
+				reboundPlayer(boxes.get(i));
 			}
 		}
 		
@@ -92,7 +92,9 @@ public class Main{
 		return true;
 	}
 	
-	private static void reboundPlayer() {
-		
+	private static void reboundPlayer(BoundingBox box) {
+		if (playerSprite.getCoords().getY() < box.getY2()) {
+			playerSprite.setCoords(playerSprite.getCoords().getX(), box.getY2() + 1);
+		}
 	}
 }

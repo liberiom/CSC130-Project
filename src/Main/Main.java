@@ -95,17 +95,17 @@ public class Main{
 	}
 	
 	private static void reboundPlayer(BoundingBox box1, BoundingBox box2) {
-		final int PADDING = 1;
+		final int OFFSET_VALUE = 10;
 		int currentX = playerSprite.getCoords().getX();
 		int currentY = playerSprite.getCoords().getY();
 		if (box1.getY1() < box2.getY2()) { // Top collision
-			playerSprite.setCoords(currentX, playerSprite.getCoords().getY() + 10);
+			playerSprite.setCoords(currentX, playerSprite.getCoords().getY() + OFFSET_VALUE);
 		} else if (box1.getY2() > box2.getY1()) { // Bottom Collision
-			playerSprite.setCoords(currentX, box2.getY1() - playerBox.getHeight() - PADDING);
+			playerSprite.setCoords(currentX, playerSprite.getCoords().getY() - OFFSET_VALUE);
 		} else if (box1.getX1() < box2.getX2()) { // Left collision
-			playerSprite.setCoords(box2.getX2() + PADDING, currentY); 
+			playerSprite.setCoords(playerSprite.getCoords().getX() + OFFSET_VALUE, currentY); 
 		} else if (box1.getX2() > box2.getX1()) { // Right Collision
-			playerSprite.setCoords(box2.getX1() - playerBox.getWidth() - PADDING, currentY);
+			playerSprite.setCoords(playerSprite.getCoords().getX() - OFFSET_VALUE, currentY);
 		}
 	}
 }

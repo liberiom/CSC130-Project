@@ -48,7 +48,7 @@ public class Main{
 				
 		// Adding BoundingBoxes ArrayList
 		boxes.add(new BoundingBox(0, 1920, 0, 11));
-		
+		boxes.add(new BoundingBox(0, 1920, 1038, 1079));
 	} 
 	
 	/* This is your access to the "game loop" (It is a "callback" method from the Control class (do NOT modify that class!))*/
@@ -74,7 +74,7 @@ public class Main{
 		for (int i = 0; i < boxes.size(); i++) {
 			if (checkCollision(playerBox, boxes.get(i))) {
 				System.out.println("COLLISION DETECTED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-				reboundPlayer(boxes.get(i));
+				reboundPlayer(playerBox, boxes.get(i));
 			}
 		}
 		
@@ -92,9 +92,17 @@ public class Main{
 		return true;
 	}
 	
-	private static void reboundPlayer(BoundingBox box) {
-		if (playerSprite.getCoords().getY() < box.getY2()) {
-			playerSprite.setCoords(playerSprite.getCoords().getX(), box.getY2() + 1);
+	private static void reboundPlayer(BoundingBox box1, BoundingBox box2) {
+		int currentX = playerSprite.getCoords().getX();
+		int currentY = playerSprite.getCoords().getY();
+		if (box1.getY1() < box2.getY2()) { // Top collision
+			playerSprite.setCoords(currentX, box2.getY2());
+		} else if (box1.getY2() > box2.getY1()) { // Bottom Collision
+			playerSprite.setCoords(currentX, box2.getY1() - playerBox.getWidthAndHeight());
+		} else if (box1.getX1() < box2.getX2()) { // Left collision
+			playerSprite.setCoords(box2.getX2(), currentY); 
+		} else if (box1.getX2() > box2.getX1()) { // Right Collision
+			playerSprite.setCoords(box2.getX1() - playerBox.getWidthAndHeight(), currentY);
 		}
 	}
 }

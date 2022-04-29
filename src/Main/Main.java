@@ -44,11 +44,13 @@ public class Main{
 		}
 	
 		// Player Box
-		playerBox = new BoundingBox(playerSprite, 128);
+		playerBox = new BoundingBox(playerSprite, 128, 128);
 				
 		// Adding BoundingBoxes ArrayList
 		boxes.add(new BoundingBox(0, 1920, 0, 11));
 		boxes.add(new BoundingBox(0, 1920, 1038, 1079));
+		boxes.add(new BoundingBox(0, 50, 0, 1080));
+		boxes.add(new BoundingBox(1920 - 50, 1920, 0, 1080));
 	} 
 	
 	/* This is your access to the "game loop" (It is a "callback" method from the Control class (do NOT modify that class!))*/
@@ -60,9 +62,9 @@ public class Main{
 		}
 		// Updating the player's BoundingBox
 		playerBox.setX1(playerSprite.getCoords().getX());
-		playerBox.setX2(playerBox.getX1() + playerBox.getWidthAndHeight());
+		playerBox.setX2(playerBox.getX1() + playerBox.getWidth());
 		playerBox.setY1(playerSprite.getCoords().getY());
-		playerBox.setY2(playerBox.getY1() + playerBox.getWidthAndHeight());
+		playerBox.setY2(playerBox.getY1() + playerBox.getHeight());
 		
 		// For deubgging purposes
 		System.out.println(playerBox.toString());
@@ -93,16 +95,17 @@ public class Main{
 	}
 	
 	private static void reboundPlayer(BoundingBox box1, BoundingBox box2) {
+		final int PADDING = 1;
 		int currentX = playerSprite.getCoords().getX();
 		int currentY = playerSprite.getCoords().getY();
 		if (box1.getY1() < box2.getY2()) { // Top collision
-			playerSprite.setCoords(currentX, box2.getY2());
+			playerSprite.setCoords(currentX, box2.getY2() + PADDING);
 		} else if (box1.getY2() > box2.getY1()) { // Bottom Collision
-			playerSprite.setCoords(currentX, box2.getY1() - playerBox.getWidthAndHeight());
+			playerSprite.setCoords(currentX, box2.getY1() - playerBox.getHeight() - PADDING);
 		} else if (box1.getX1() < box2.getX2()) { // Left collision
-			playerSprite.setCoords(box2.getX2(), currentY); 
+			playerSprite.setCoords(box2.getX2() + PADDING, currentY); 
 		} else if (box1.getX2() > box2.getX1()) { // Right Collision
-			playerSprite.setCoords(box2.getX1() - playerBox.getWidthAndHeight(), currentY);
+			playerSprite.setCoords(box2.getX1() - playerBox.getWidth() - PADDING, currentY);
 		}
 	}
 }

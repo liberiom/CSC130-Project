@@ -2,15 +2,16 @@ package Data;
 
 public class BoundingBox {
 	private spriteInfo sprite;
-	private int x1, x2, y1, y2, widthAndHeight;
+	private int x1, x2, y1, y2, width, height;
 	
-	public BoundingBox(spriteInfo sprite, int widthAndHeight) {
+	public BoundingBox(spriteInfo sprite, int width, int height) {
 		this.sprite = sprite;
-		this.widthAndHeight = widthAndHeight;
+		this.width = width;
+		this.height = height;
 		this.x1 = sprite.getCoords().getX();
 		this.y1 = sprite.getCoords().getY();
-		this.x2 = sprite.getCoords().getX() + widthAndHeight;
-		this.y2 = sprite.getCoords().getY() + widthAndHeight;
+		this.x2 = sprite.getCoords().getX() + width;
+		this.y2 = sprite.getCoords().getY() + height;
 	}
 	
 	// This bounding box is specifically made for the outer barriers 
@@ -41,8 +42,12 @@ public class BoundingBox {
 		return y2;
 	}
 	
-	public int getWidthAndHeight() {
-		return widthAndHeight;
+	public int getWidth() {
+		return this.width;
+	}
+
+	public int getHeight() {
+		return this.height;
 	}
 	
 	public void setX1(int x1){

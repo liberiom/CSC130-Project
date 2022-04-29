@@ -49,7 +49,7 @@ public class Main{
 		// Adding BoundingBoxes ArrayList
 		boxes.add(new BoundingBox(0, 1920, 0, 11));
 		boxes.add(new BoundingBox(0, 1920, 1038, 1079));
-		boxes.add(new BoundingBox(0, 50, 0, 1080));
+		boxes.add(new BoundingBox(0, 100, 0, 1080));
 		boxes.add(new BoundingBox(1920 - 50, 1920, 0, 1080));
 	} 
 	

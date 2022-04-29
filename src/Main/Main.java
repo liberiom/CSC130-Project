@@ -99,7 +99,7 @@ public class Main{
 		int currentX = playerSprite.getCoords().getX();
 		int currentY = playerSprite.getCoords().getY();
 		if (box1.getY1() < box2.getY2()) { // Top collision
-			playerSprite.setCoords(currentX, box2.getY2() + PADDING);
+			playerSprite.setCoords(currentX, playerSprite.getCoords().getY() + 10);
 		} else if (box1.getY2() > box2.getY1()) { // Bottom Collision
 			playerSprite.setCoords(currentX, box2.getY1() - playerBox.getHeight() - PADDING);
 		} else if (box1.getX1() < box2.getX2()) { // Left collision

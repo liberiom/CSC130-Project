@@ -47,10 +47,11 @@ public class Main{
 		playerBox = new BoundingBox(playerSprite, 128, 128);
 				
 		// Adding BoundingBoxes ArrayList
-		boundaryBoxes.add(new BoundingBox(0, 1920, 0, 11));
-		boundaryBoxes.add(new BoundingBox(0, 1920, 1038, 1079));
-		boundaryBoxes.add(new BoundingBox(0, 100, 0, 1080));
-		boundaryBoxes.add(new BoundingBox(1920 - 50, 1920, 0, 1080));
+		boundaryBoxes.add(new BoundingBox(0, 1580, 0, 74)); // Top part 1
+		boundaryBoxes.add(new BoundingBox(1729, 1920, 0, 70)); // Top part 2
+		boundaryBoxes.add(new BoundingBox(0, 48, 79, 1022)); // Left
+		boundaryBoxes.add(new BoundingBox(0, 1920, 1026, 1080)); // Bottom 
+		boundaryBoxes.add(new BoundingBox(1855, 1920, 80, 1025)); // Right 
 		
 		// Creating the background
 		spriteInfo background = new spriteInfo(new Vector2D(0, 0), "background");

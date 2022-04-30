@@ -52,12 +52,14 @@ public class Main{
 		boundaryBoxes.add(new BoundingBox(0, 100, 0, 1080));
 		boundaryBoxes.add(new BoundingBox(1920 - 50, 1920, 0, 1080));
 		
+		// Creating the background
 		spriteInfo background = new spriteInfo(new Vector2D(0, 0), "background");
 		
 	} 
 	
 	/* This is your access to the "game loop" (It is a "callback" method from the Control class (do NOT modify that class!))*/
 	public static void update(Control ctrl) {
+		ctrl.addSpriteToFrontBuffer(0, 0, "background");
 		if (isRight) {
 			ctrl.addSpriteToFrontBuffer(startPosition.getX(), startPosition.getY(), spritesRight.peek().getTag());
 		} else {

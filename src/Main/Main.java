@@ -32,6 +32,8 @@ public class Main{
 	public static spriteInfo playerSprite = new spriteInfo(startPosition, "frame1");
 	public static BoundingBox playerBox;
 	private static Random rng = new Random();
+	public static boolean isTreasureVisible = true;
+	private static spriteInfo treasure;
 	
 	// End Static fields...
 	public static void main(String[] args) {
@@ -59,10 +61,8 @@ public class Main{
 		boundaryBoxes.add(new BoundingBox(1855, 1920, 0, 1080)); // Right 
 		
 		// Items x = 123 to 1730, y = 
-		int randomX = rng.nextInt(1730 - 123) + 123;
-		int randomY = rng.nextInt(948 - 121) + 121;
-		spriteInfo treasure = new spriteInfo(new Vector2D(randomX, randomY), "treasure");
-		
+		treasure = new spriteInfo(new Vector2D(rng.nextInt(1730 - 123) + 123, rng.nextInt(948 - 121) + 121), "treasure");
+
 		// Item BoundingBoxes
 		
 		// Creating the background
@@ -73,11 +73,17 @@ public class Main{
 	/* This is your access to the "game loop" (It is a "callback" method from the Control class (do NOT modify that class!))*/
 	public static void update(Control ctrl) {
 		ctrl.addSpriteToFrontBuffer(0, 0, "background");
+		
+		if (isTreasureVisible) {
+			ctrl.addSpriteToFrontBuffer(treasure.getCoords().getX(), treasure.getCoords().getX(), trigger);
+		}
+		
 		if (isRight) {
 			ctrl.addSpriteToFrontBuffer(startPosition.getX(), startPosition.getY(), spritesRight.peek().getTag());
 		} else {
 			ctrl.addSpriteToFrontBuffer(startPosition.getX(), startPosition.getY(), spritesLeft.peek().getTag());
 		}
+		
 		// Updating the player's BoundingBox
 		playerBox.setX1(playerSprite.getCoords().getX());
 		playerBox.setX2(playerBox.getX1() + playerBox.getWidth());

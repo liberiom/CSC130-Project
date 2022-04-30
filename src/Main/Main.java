@@ -94,18 +94,18 @@ public class Main{
 		return true;
 	}
 	
-	private static void reboundPlayer(BoundingBox box1, BoundingBox box2) {
-		/*
-		 * TODO: MUST CHANGE IF STATEMENTS AND MAKE THEM MORE DEFINED TO AVOID BOX-TYPE CONFUSION!
-		 */
+	private static void reboundPlayer(BoundingBox box1, BoundingBox box2) {	
+		final int PADDING = 1; // Padding insures that there is not an infinite collision
 		int currentX = playerSprite.getCoords().getX();
 		int currentY = playerSprite.getCoords().getY();
 		if (box1.getY1() < box2.getY2() && box1.getX1() < box2.getX2() && box1.getX2() > box2.getX1() && box1.getY2() > box2.getY2()) { // Top collision
-			playerSprite.setCoords(currentX, box2.getY2() + 1);
+			playerSprite.setCoords(currentX, box2.getY2() + PADDING);
 		} else if (box1.getY2() > box2.getY1() && box1.getX1() < box2.getX2() && box1.getX2() > box2.getX1() && box1.getY1() < box2.getY1()) { // Bottom Collision
-			playerSprite.setCoords(currentX, box2.getY1() - box1.getHeight() - 1);
-		} else if (box1.getX1() < box2.getX2()) { // Left collision
-		} else if (box1.getX2() > box2.getX1()) { // Right Collision
+			playerSprite.setCoords(currentX, box2.getY1() - box1.getHeight() - PADDING);
+		} else if (box1.getX1() < box2.getX2() && box1.getY1() < box2.getY2() && box1.getY2() > box2.getY1() && box1.getX2() > box2.getX2()) { // Left collision
+			playerSprite.setCoords(box2.getX2() + PADDING, currentY);
+		} else if (box1.getX2() > box2.getX1() && box1.getY1() < box2.getY2() && box1.getY2() > box2.getY1() && box1.getX1() < box2.getX1()) { // Right Collision
+			playerSprite.setCoords(box2.getX1() - box1.getWidth() - PADDING, currentY);
 		}
 	}
 }

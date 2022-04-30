@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Random;
 import java.util.StringTokenizer;
 
 import Data.BoundingBox;
@@ -27,8 +28,10 @@ public class Main{
 	public static Queue<spriteInfo> spritesRight = new LinkedList<spriteInfo>();
 	public static Queue<spriteInfo> spritesLeft = new LinkedList<spriteInfo>();
 	public static ArrayList<BoundingBox> boundaryBoxes = new ArrayList<BoundingBox>();
+	public static ArrayList<BoundingBox> itemBoxes = new ArrayList<BoundingBox>();
 	public static spriteInfo playerSprite = new spriteInfo(startPosition, "frame1");
 	public static BoundingBox playerBox;
+	private static Random rng = new Random();
 	
 	// End Static fields...
 	public static void main(String[] args) {
@@ -38,6 +41,8 @@ public class Main{
 	
 	/* This is your access to things BEFORE the game loop starts */
 	public static void start(){
+		
+		// Loading the walking variables
 		for (int i = 1; i <= 8; i++) {
 			spritesRight.add(new spriteInfo(dummyVector2D, "frame" + i));
 			spritesLeft.add(new spriteInfo(dummyVector2D, "flippedframe" + i));
@@ -52,6 +57,13 @@ public class Main{
 		boundaryBoxes.add(new BoundingBox(0, 48, 0, 1028)); // Left
 		boundaryBoxes.add(new BoundingBox(0, 1920, 1026, 1080)); // Bottom 
 		boundaryBoxes.add(new BoundingBox(1855, 1920, 0, 1080)); // Right 
+		
+		// Items x = 123 to 1730, y = 
+		int randomX = rng.nextInt(1730 - 123) + 123;
+		int randomY = rng.nextInt(948 - 121) + 121;
+		spriteInfo treasure = new spriteInfo(new Vector2D(randomX, randomY), "treasure");
+		
+		// Item BoundingBoxes
 		
 		// Creating the background
 		spriteInfo background = new spriteInfo(new Vector2D(0, 0), "background");

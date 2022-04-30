@@ -49,9 +49,9 @@ public class Main{
 		// Adding BoundingBoxes ArrayList
 		boundaryBoxes.add(new BoundingBox(0, 1580, 0, 74)); // Top part 1
 		boundaryBoxes.add(new BoundingBox(1729, 1920, 0, 70)); // Top part 2
-		boundaryBoxes.add(new BoundingBox(0, 48, 79, 1022)); // Left
+		boundaryBoxes.add(new BoundingBox(0, 48, 0, 1028)); // Left
 		boundaryBoxes.add(new BoundingBox(0, 1920, 1026, 1080)); // Bottom 
-		boundaryBoxes.add(new BoundingBox(1855, 1920, 80, 1025)); // Right 
+		boundaryBoxes.add(new BoundingBox(1855, 1920, 0, 1080)); // Right 
 		
 		// Creating the background
 		spriteInfo background = new spriteInfo(new Vector2D(0, 0), "background");
@@ -98,7 +98,7 @@ public class Main{
 	private static void reboundPlayer(BoundingBox box1, BoundingBox box2) {	
 		final int PADDING = 1; // Padding insures that there is not an infinite collision
 		int currentX = playerSprite.getCoords().getX();
-		int currentY = playerSprite.getCoords().getY();
+		int currentY = playerSprite.getCoords().getY();	
 		if (box1.getY1() < box2.getY2() && box1.getX1() < box2.getX2() && box1.getX2() > box2.getX1() && box1.getY2() > box2.getY2()) { // Top collision
 			playerSprite.setCoords(currentX, box2.getY2() + PADDING);
 		} else if (box1.getY2() > box2.getY1() && box1.getX1() < box2.getX2() && box1.getX2() > box2.getX1() && box1.getY1() < box2.getY1()) { // Bottom Collision

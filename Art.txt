@@ -16,3 +16,4 @@ Art/flippedframe5.png*flippedframe5
 Art/flippedframe6.png*flippedframe6
 Art/flippedframe7.png*flippedframe7
 Art/flippedframe8.png*flippedframe8
+Art/background.png*background

@@ -26,7 +26,7 @@ public class Main{
 	public static boolean isRight = true;
 	public static Queue<spriteInfo> spritesRight = new LinkedList<spriteInfo>();
 	public static Queue<spriteInfo> spritesLeft = new LinkedList<spriteInfo>();
-	public static ArrayList<BoundingBox> boxes = new ArrayList<BoundingBox>();
+	public static ArrayList<BoundingBox> boundaryBoxes = new ArrayList<BoundingBox>();
 	public static spriteInfo playerSprite = new spriteInfo(startPosition, "frame1");
 	public static BoundingBox playerBox;
 	
@@ -47,10 +47,13 @@ public class Main{
 		playerBox = new BoundingBox(playerSprite, 128, 128);
 				
 		// Adding BoundingBoxes ArrayList
-		boxes.add(new BoundingBox(0, 1920, 0, 11));
-		boxes.add(new BoundingBox(0, 1920, 1038, 1079));
-		boxes.add(new BoundingBox(0, 100, 0, 1080));
-		boxes.add(new BoundingBox(1920 - 50, 1920, 0, 1080));
+		boundaryBoxes.add(new BoundingBox(0, 1920, 0, 11));
+		boundaryBoxes.add(new BoundingBox(0, 1920, 1038, 1079));
+		boundaryBoxes.add(new BoundingBox(0, 100, 0, 1080));
+		boundaryBoxes.add(new BoundingBox(1920 - 50, 1920, 0, 1080));
+		
+		spriteInfo background = new spriteInfo(new Vector2D(0, 0), "background");
+		
 	} 
 	
 	/* This is your access to the "game loop" (It is a "callback" method from the Control class (do NOT modify that class!))*/
@@ -66,17 +69,12 @@ public class Main{
 		playerBox.setY1(playerSprite.getCoords().getY());
 		playerBox.setY2(playerBox.getY1() + playerBox.getHeight());
 		
-		// For deubgging purposes
-		System.out.println(playerBox.toString());
-		
-		
 		/*
 		 * Checking the player's collision against walls, doors, enemies, and chests
 		 */
-		for (int i = 0; i < boxes.size(); i++) {
-			if (checkCollision(playerBox, boxes.get(i))) {
-				System.out.println("COLLISION DETECTED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-				reboundPlayer(playerBox, boxes.get(i));
+		for (int i = 0; i < boundaryBoxes.size(); i++) {
+			if (checkCollision(playerBox, boundaryBoxes.get(i))) {
+				reboundPlayer(playerBox, boundaryBoxes.get(i));
 			}
 		}
 		

@@ -27,13 +27,21 @@ public class Main{
 	public static boolean isRight = true;
 	public static Queue<spriteInfo> spritesRight = new LinkedList<spriteInfo>();
 	public static Queue<spriteInfo> spritesLeft = new LinkedList<spriteInfo>();
+	public static Queue<spriteInfo> swordRight = new LinkedList<spriteInfo>();
+	public static Queue<spriteInfo> swordLeft = new LinkedList<spriteInfo>();
+	public static boolean hasSword = false;
 	public static ArrayList<BoundingBox> boundaryBoxes = new ArrayList<BoundingBox>();
 	public static ArrayList<BoundingBox> itemBoxes = new ArrayList<BoundingBox>();
 	public static spriteInfo playerSprite = new spriteInfo(startPosition, "frame1");
 	public static BoundingBox playerBox;
+	public static BoundingBox treasureBoundingBox;
 	private static Random rng = new Random();
 	public static boolean isTreasureVisible = true;
 	private static spriteInfo treasure;
+	private static spriteInfo treasureLeft;
+	private static spriteInfo treasureRight;
+	private static spriteInfo treasureUp;
+	private static spriteInfo treasureDown;
 	
 	// End Static fields...
 	public static void main(String[] args) {
@@ -48,6 +56,8 @@ public class Main{
 		for (int i = 1; i <= 8; i++) {
 			spritesRight.add(new spriteInfo(dummyVector2D, "frame" + i));
 			spritesLeft.add(new spriteInfo(dummyVector2D, "flippedframe" + i));
+			swordRight.add(new spriteInfo(dummyVector2D, "sword" + i));
+			swordLeft.add(new spriteInfo(dummyVector2D, "flippedsword" + i)); 
 		}
 	
 		// Player Box
@@ -62,8 +72,14 @@ public class Main{
 		
 		// Items x = 123 to 1730, y = 
 		treasure = new spriteInfo(new Vector2D(rng.nextInt(1730 - 123) + 123, rng.nextInt(948 - 121) + 121), "treasure");
-
+		// treasureLeft = new spriteInfo(new Vector2D(treasure.getCoords().getX() - 50 - 1, treasure.getCoords().getY()), "nothing");
+		// treasureRight = new spriteInfo(new Vector2D(treasure.getCoords().getX() + 51, treasure.getCoords().getY()), "nothing");
+		// treasureUp = new spriteInfo(new Vector2D(treasure.getCoords().getX(), treasure.getCoords().getY() - 51), "nothing");
+		// treasureDown = new spriteInfo(new Vector2D(treasure.getCoords().getX(), treasure.getCoords().getY() + 51), "nothing");
+		
 		// Item BoundingBoxes
+		treasureBoundingBox = new BoundingBox(treasure.getCoords().getX() - 30, treasure.getCoords().getX() + 80, treasure.getCoords().getY() - 30, treasure.getCoords().getY() + 80);  // Collision Box of the treasure box, separate from the other boxes
+		
 		
 		// Creating the background
 		spriteInfo background = new spriteInfo(new Vector2D(0, 0), "background");
@@ -73,15 +89,25 @@ public class Main{
 	/* This is your access to the "game loop" (It is a "callback" method from the Control class (do NOT modify that class!))*/
 	public static void update(Control ctrl) {
 		ctrl.addSpriteToFrontBuffer(0, 0, "background");
-		
+	
+		// Treasure visibility
 		if (isTreasureVisible) {
 			ctrl.addSpriteToFrontBuffer(treasure.getCoords().getX(), treasure.getCoords().getX(), trigger);
 		}
-		
+	
+		// Direction
 		if (isRight) {
-			ctrl.addSpriteToFrontBuffer(startPosition.getX(), startPosition.getY(), spritesRight.peek().getTag());
+			if (hasSword) {
+				ctrl.addSpriteToFrontBuffer(startPosition.getX(), startPosition.getY(), swordRight.peek().getTag());
+			} else {
+				ctrl.addSpriteToFrontBuffer(startPosition.getX(), startPosition.getY(), spritesRight.peek().getTag());
+			}
 		} else {
-			ctrl.addSpriteToFrontBuffer(startPosition.getX(), startPosition.getY(), spritesLeft.peek().getTag());
+			if (hasSword) {
+				ctrl.addSpriteToFrontBuffer(startPosition.getX(), startPosition.getY(), swordLeft.peek().getTag());
+			} else {
+				ctrl.addSpriteToFrontBuffer(startPosition.getX(), startPosition.getY(), spritesLeft.peek().getTag());
+			}
 		}
 		
 		// Updating the player's BoundingBox
@@ -90,13 +116,16 @@ public class Main{
 		playerBox.setY1(playerSprite.getCoords().getY());
 		playerBox.setY2(playerBox.getY1() + playerBox.getHeight());
 		
-		/*
-		 * Checking the player's collision against walls, doors, enemies, and chests
-		 */
+		// Checking the player's collision against walls
 		for (int i = 0; i < boundaryBoxes.size(); i++) {
 			if (checkCollision(playerBox, boundaryBoxes.get(i))) {
 				reboundPlayer(playerBox, boundaryBoxes.get(i));
 			}
+		}
+		
+		// Checking the player's collision against chests
+		if (checkCollision(playerBox, treasureBoundingBox)) {
+			ctrl.drawString(treasureBoundingBox.getX1(), treasureBoundingBox.getY2(), "Press O to open the chest", white);
 		}
 		
 	}

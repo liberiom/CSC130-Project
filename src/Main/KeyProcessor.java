@@ -60,6 +60,9 @@ public class KeyProcessor{
 			// For mouse coordinates
 			Control.isMouseCoordsDisplayed = !Control.isMouseCoordsDisplayed;
 			break;
+			
+		case 'o':
+			System.out.println("O has been pressed");
 		}
 	}
 	
@@ -71,5 +74,7 @@ public class KeyProcessor{
 	private static void changeToNextFrame() {
 		Main.spritesRight.add(Main.spritesRight.remove());
 		Main.spritesLeft.add(Main.spritesLeft.remove());
+		Main.swordRight.add(Main.swordRight.remove());
+		Main.swordLeft.add(Main.swordLeft.remove());
 	}
 }

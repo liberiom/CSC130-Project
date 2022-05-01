@@ -70,7 +70,7 @@ public class Main{
 		boundaryBoxes.add(new BoundingBox(0, 1920, 1026, 1080)); // Bottom 
 		boundaryBoxes.add(new BoundingBox(1855, 1920, 0, 1080)); // Right 
 		
-		// Items x = 123 to 1730, y = 
+		// Items 
 		treasure = new spriteInfo(new Vector2D(rng.nextInt(1730 - 123) + 123, rng.nextInt(948 - 121) + 121), "treasure");
 		// treasureLeft = new spriteInfo(new Vector2D(treasure.getCoords().getX() - 50 - 1, treasure.getCoords().getY()), "nothing");
 		// treasureRight = new spriteInfo(new Vector2D(treasure.getCoords().getX() + 51, treasure.getCoords().getY()), "nothing");
@@ -92,7 +92,7 @@ public class Main{
 	
 		// Treasure visibility
 		if (isTreasureVisible) {
-			ctrl.addSpriteToFrontBuffer(treasure.getCoords().getX(), treasure.getCoords().getX(), trigger);
+			ctrl.addSpriteToFrontBuffer(treasure.getCoords().getX(), treasure.getCoords().getX(), "treasure");
 		}
 	
 		// Direction

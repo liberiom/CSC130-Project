@@ -90,6 +90,11 @@ public class KeyProcessor{
 				Main.hasSword = true;
 				oKeyEnabled = false;
 				qKeyEnabled = false;
+				if (Main.isChestOpenedDialogue) {
+					Main.isTreasureVisible = false;
+					Main.treasureBoundingBox.destroy();
+				}
+				Main.turnOffDialog();
 			}
 			break;
 		}

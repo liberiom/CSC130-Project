@@ -22,6 +22,14 @@ public class BoundingBox {
 		this.y2 = y2;
 	}
 	
+	// Gets rid of the BoundingBox by placing it in an impossible-to-reach area
+	public void destroy() {
+		this.setX1(-100);
+		this.setX2(-100);
+		this.setY1(-100);
+		this.setY2(-100);
+	}
+	
 	public String toString() {
 		return "" + x1 + " " + x2 + " " + y1 + " " + y2;
 	}

@@ -41,10 +41,10 @@ public class Main{
 	public static boolean isTreasureVisible = true;
 	private static Random rng = new Random();
 	public static boolean isDialogBoxShowing;
-	private static boolean isDoorUnlockedDialogue = false;
-	private static boolean isDoorLockedDialogue = false;
-	private static boolean isChestOpenedDialogue = false;
-	private static boolean isKeyDialog = false;
+	public static boolean isDoorUnlockedDialogue = false;
+	public static boolean isDoorLockedDialogue = false;
+	public static boolean isChestOpenedDialogue = false;
+	public static boolean isKeyDialog = false;
 	
 	// End Static fields...
 	public static void main(String[] args) {
@@ -70,7 +70,7 @@ public class Main{
 		playerBox = new BoundingBox(playerSprite, 128, 128);
 		
 		// Dialog Boxes
-		dialogTextbox = new spriteInfo(new Vector2D(737, 459), "dialogTextbox");
+		dialogTextbox = new spriteInfo(new Vector2D(737, 459), "dialogueTextbox");
 				
 		// Adding BoundingBoxes ArrayList
 		boundaryBoxes.add(new BoundingBox(0, 1580, 0, 74)); // Top part 1
@@ -122,12 +122,15 @@ public class Main{
 		
 		// Dialog Box toggling 
 		if (isDialogBoxShowing) {
+			int nextLine = 30;
 			ctrl.addSpriteToFrontBuffer(dialogTextbox.getCoords().getX(), dialogTextbox.getCoords().getY(), dialogTextbox.getTag());
 			/*
 			 * TODO: Test Dialog here 
 			 */
 			if (isChestOpenedDialogue) {
-				
+				ctrl.drawString(dialogTextbox.getCoords().getX() + 10, dialogTextbox.getCoords().getY() + (nextLine * 1), "You found a sword! Use the sword by pressing the Spacebar near ", white);
+				ctrl.drawString(dialogTextbox.getCoords().getX() + 10, dialogTextbox.getCoords().getY() + (nextLine * 2), "enemies to kill them.", white);
+				ctrl.drawString(dialogTextbox.getCoords().getX() + 10, dialogTextbox.getCoords().getY() + (nextLine * 10), "Press Q to exit", white);
 			} else if (isDoorUnlockedDialogue) {
 				
 			} else if (isDoorLockedDialogue) {
@@ -155,6 +158,7 @@ public class Main{
 		
 		// Checking the player's collision against chests
 		if (checkCollision(playerBox, treasureBoundingBox)) {
+			isChestOpenedDialogue = true;
 			KeyProcessor.oKeyEnabled = true;
 			if (!tempHideString) {
 				ctrl.drawString(treasure.getCoords().getX() - 50, treasure.getCoords().getY() + 70, "Press O to open the chest", white);
@@ -188,5 +192,12 @@ public class Main{
 		} else if (box1.getX2() > box2.getX1() && box1.getY1() < box2.getY2() && box1.getY2() > box2.getY1() && box1.getX1() < box2.getX1()) { // Right Collision
 			playerSprite.setCoords(box2.getX1() - box1.getWidth() - PADDING, currentY);
 		}
+	}
+	
+	public static void turnOffDialog() {
+		isChestOpenedDialogue = false;
+		isDoorLockedDialogue = false;
+		isKeyDialog = false;
+		isDoorUnlockedDialogue = false;
 	}
 }

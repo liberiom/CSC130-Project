@@ -17,42 +17,18 @@ import timer.stopWatchX;
 
 public class Main{
 	// Fields (Static) below...
-	// private static spriteInfo treasure;
-	// public static BoundingBox treasureBoundingBox;
 	public static Treasure treasure;
 	public static Player player;
-	// public static stopWatchX timer = new stopWatchX(3000);
+	public static Door door;
 	private static Color white = new Color(255, 255, 255);
-	// public static String trigger = "";
-	// public static Vector2D startPosition = new Vector2D(500, 500);
-	// public static Vector2D dummyVector2D = new Vector2D(0, 0);
-	// public static int speed = 10;
-	// public static boolean visible = true;
-	// public static boolean isRight = true;
-	// public static boolean hasSword = false;
-	// public static Queue<spriteInfo> spritesRight = new LinkedList<spriteInfo>();
-	// public static Queue<spriteInfo> spritesLeft = new LinkedList<spriteInfo>();
-	// public static Queue<spriteInfo> swordRight = new LinkedList<spriteInfo>();
-	// public static Queue<spriteInfo> swordLeft = new LinkedList<spriteInfo>();
 	public static ArrayList<BoundingBox> boundaryBoxes = new ArrayList<BoundingBox>();
-	// public static ArrayList<BoundingBox> itemBoxes = new ArrayList<BoundingBox>();
-	// public static spriteInfo playerSprite;	
-	// public static spriteInfo slashSprite;
-	// public static spriteInfo leftSlashSprite;
-	// public static spriteInfo upSlashSprite;
-	// public static spriteInfo downSlashSprite;
 	private static spriteInfo dialogTextbox;	
-	// public static BoundingBox playerBox;
 	public static boolean tempHideString = false;
-	// public static boolean isTreasureVisible = true;
-	// private static Random rng = new Random();
 	public static boolean isDialogBoxShowing;
 	public static boolean isDoorUnlockedDialogue = false;
 	public static boolean isDoorLockedDialogue = false;
 	public static boolean isChestOpenedDialogue = false;
 	public static boolean isKeyDialog = false;
-	// public static boolean isSlashing = false;
-	// public static boolean isFacingRight = true;
 	
 	// End Static fields...
 	public static void main(String[] args) {
@@ -64,23 +40,7 @@ public class Main{
 	public static void start(){
 		
 		// Player Sprite
-		// playerSprite = new spriteInfo(startPosition, "frame1");
-		player = new Player();
-		
-		// Slash
-		// slashSprite = new spriteInfo(new Vector2D(-100, -100), "slash");
-		// leftSlashSprite = new spriteInfo(new Vector2D(-100, -100), "flippedslash");
-		
-		// Loading the walking variables
-		// for (int i = 1; i <= 8; i++) {
-			// spritesRight.add(new spriteInfo(dummyVector2D, "frame" + i));
-			// spritesLeft.add(new spriteInfo(dummyVector2D, "flippedframe" + i));
-			// swordRight.add(new spriteInfo(dummyVector2D, "sword" + i));
-			// swordLeft.add(new spriteInfo(dummyVector2D, "flippedsword" + i)); 
-		// }
-	
-		// Player Box
-		// playerBox = new BoundingBox(playerSprite, 30, 100);
+		player = new Player();	
 		
 		// Dialog Boxes
 		dialogTextbox = new spriteInfo(new Vector2D(737, 459), "dialogueTextbox");
@@ -93,30 +53,27 @@ public class Main{
 		boundaryBoxes.add(new BoundingBox(1805, 1920, 0, 1080)); // Right 
 		
 		// Items 
-		// treasure = new spriteInfo(new Vector2D(rng.nextInt(1730 - 123) + 123, rng.nextInt(948 - 121) + 121), "treasure");
 		treasure = new Treasure();
-				
-		// Item BoundingBoxes
-		// treasureBoundingBox = new BoundingBox(treasure.getCoords().getX() - 30, treasure.getCoords().getX() + 80, treasure.getCoords().getY() - 30, treasure.getCoords().getY() + 80);  // Collision Box of the treasure box, separate from the other boxes
-		// System.out.println("Treasure X: " + treasure.getCoords().getX());
-		// System.out.println("Treausre Y: " + treasure.getCoords().getY());
-		//System.out.println("Treasure X1: " + treasureBoundingBox.getX1());
-		// System.out.println("Treausre X2: " + treasureBoundingBox.getX2());
-		//System.out.println("Treasure Y1: " + treasureBoundingBox.getY1());
-		// System.out.println("Treasure Y2: " + treasureBoundingBox.getY2());
 		
 		// Creating the background
 		spriteInfo background = new spriteInfo(new Vector2D(0, 0), "background");
-		
+	
+		// Creating the door
+		door = new Door();
 	} 
 	
 	/* This is your access to the "game loop" (It is a "callback" method from the Control class (do NOT modify that class!))*/
 	public static void update(Control ctrl) {
 		ctrl.addSpriteToFrontBuffer(0, 0, "background");
+		
+		// Door visibility
+		if (door.isDoorLocked()) {
+			ctrl.addSpriteToFrontBuffer(door.getSprite().getCoords().getX(), door.getSprite().getCoords().getY(), door.getSprite().getTag());
+		}
 	
 		// Treasure visibility
 		if (treasure.isTreasureVisible()) {
-			ctrl.addSpriteToFrontBuffer(treasure.getSprite().getCoords().getX(), treasure.getSprite().getCoords().getY(), "treasure");
+			ctrl.addSpriteToFrontBuffer(treasure.getSprite().getCoords().getX(), treasure.getSprite().getCoords().getY(), treasure.getSprite().getTag());
 		}
 	
 		// Direction
@@ -136,21 +93,18 @@ public class Main{
 		
 		// Dialog Box toggling 
 		if (isDialogBoxShowing) {
-			int nextLine = 30;
+			int lineSpacing = 30;
 			int dialogBoxXCoord = dialogTextbox.getCoords().getX() + 10;
 			int dialogBoxYCoord = dialogTextbox.getCoords().getY();
 			ctrl.addSpriteToFrontBuffer(dialogTextbox.getCoords().getX(), dialogTextbox.getCoords().getY(), dialogTextbox.getTag());
-			/*
-			 * TODO: Test Dialog here 
-			 */
 			if (isChestOpenedDialogue) {
-				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + (nextLine * 1), "You found a sword! Use the sword by pressing the Spacebar near ", white);
-				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + (nextLine * 2), "enemies to kill them.", white);
-				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + (nextLine * 10), "Press Q to exit", white);
+				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 1), "You found a sword! Use the sword by pressing the Spacebar near ", white);
+				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 2), "enemies to kill them.", white);
+				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 10), "Press Q to exit", white);
 			} else if (isDoorUnlockedDialogue) {
-				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + (nextLine * 1), "You found a sword! Use the sword by pressing the Spacebar near ", white);
+				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 1), "You found a sword! Use the sword by pressing the Spacebar near ", white);
 			} else if (isDoorLockedDialogue) {
-				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + (nextLine * 1), "Hmm... this door seems to be locked. There must be a key somewhere...", white);
+				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 1), "Hmm... this door seems to be locked. There must be a key somewhere...", white);
 			} else if (isKeyDialog) {
 				
 			} else {
@@ -165,11 +119,12 @@ public class Main{
 		player.getPlayerBoundingBox().setY1(player.getPlayerSprite().getCoords().getY());
 		player.getPlayerBoundingBox().setY2(player.getPlayerBoundingBox().getY1() + player.getPlayerBoundingBox().getHeight());
 		
-		// Checking the player's collision against walls
+		// Checking the player's collision against walls and rebound player
 		for (int i = 0; i < boundaryBoxes.size(); i++) {
 			if (checkCollision(player.getPlayerBoundingBox(), boundaryBoxes.get(i))) {
 				reboundPlayer(player.getPlayerBoundingBox(), boundaryBoxes.get(i));
 			}
+			// DON'T PUT GHOST BOUNDARY BOXES HERE!
 		}
 		
 		// Checking the player's collision against chests
@@ -179,6 +134,11 @@ public class Main{
 			if (!tempHideString) {
 				ctrl.drawString(treasure.getSprite().getCoords().getX() - 50, treasure.getSprite().getCoords().getY() + 70, "Press O to open the chest", white);
 			}
+		}
+		
+		// Checking the player's collision against the door and rebound player
+		if (checkCollision(player.getPlayerBoundingBox(), door.getBoundingBox())) {
+			reboundPlayer(player.getPlayerBoundingBox(), door.getBoundingBox());
 		}
 		
 		// Slashing
@@ -218,5 +178,9 @@ public class Main{
 		isDoorLockedDialogue = false;
 		isKeyDialog = false;
 		isDoorUnlockedDialogue = false;
+	}
+	
+	private static int nextLine(int sizeOfLine, int numOfLines) {
+		return sizeOfLine * numOfLines;	
 	}
 }

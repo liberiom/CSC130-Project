@@ -36,3 +36,4 @@ Art/flippedsword7.png*flippedsword7
 Art/flippedsword8.png*flippedsword8
 Art/dialogTextbox.png*dialogueTextbox
 Art/slash.png*slash
+Art/door.png*door

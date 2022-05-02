@@ -123,18 +123,20 @@ public class Main{
 		// Dialog Box toggling 
 		if (isDialogBoxShowing) {
 			int nextLine = 30;
+			int dialogBoxXCoord = dialogTextbox.getCoords().getX() + 10;
+			int dialogBoxYCoord = dialogTextbox.getCoords().getY();
 			ctrl.addSpriteToFrontBuffer(dialogTextbox.getCoords().getX(), dialogTextbox.getCoords().getY(), dialogTextbox.getTag());
 			/*
 			 * TODO: Test Dialog here 
 			 */
 			if (isChestOpenedDialogue) {
-				ctrl.drawString(dialogTextbox.getCoords().getX() + 10, dialogTextbox.getCoords().getY() + (nextLine * 1), "You found a sword! Use the sword by pressing the Spacebar near ", white);
-				ctrl.drawString(dialogTextbox.getCoords().getX() + 10, dialogTextbox.getCoords().getY() + (nextLine * 2), "enemies to kill them.", white);
-				ctrl.drawString(dialogTextbox.getCoords().getX() + 10, dialogTextbox.getCoords().getY() + (nextLine * 10), "Press Q to exit", white);
+				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + (nextLine * 1), "You found a sword! Use the sword by pressing the Spacebar near ", white);
+				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + (nextLine * 2), "enemies to kill them.", white);
+				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + (nextLine * 10), "Press Q to exit", white);
 			} else if (isDoorUnlockedDialogue) {
-				
+				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + (nextLine * 1), "You found a sword! Use the sword by pressing the Spacebar near ", white);
 			} else if (isDoorLockedDialogue) {
-				
+				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + (nextLine * 1), "Hmm... this door seems to be locked. There must be a key somewhere...", white);
 			} else if (isKeyDialog) {
 				
 			} else {

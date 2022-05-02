@@ -93,8 +93,8 @@ public class KeyProcessor{
 				oKeyEnabled = false;
 				qKeyEnabled = false;
 				if (Main.isChestOpenedDialogue) {
-					Main.isTreasureVisible = false;
-					Main.treasureBoundingBox.destroy();
+					Main.treasure.setTreasureVisibility(false);
+					Main.treasure.destroyBoundingBox();
 				}
 				Main.turnOffDialog();
 			}

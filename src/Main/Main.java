@@ -17,8 +17,9 @@ import timer.stopWatchX;
 
 public class Main{
 	// Fields (Static) below...
-	private static spriteInfo treasure;
-	public static BoundingBox treasureBoundingBox;
+	// private static spriteInfo treasure;
+	// public static BoundingBox treasureBoundingBox;
+	public static Treasure treasure;
 	public static stopWatchX timer = new stopWatchX(3000);
 	private static Color white = new Color(255, 255, 255);
 	public static String trigger = "";
@@ -33,7 +34,7 @@ public class Main{
 	public static Queue<spriteInfo> swordRight = new LinkedList<spriteInfo>();
 	public static Queue<spriteInfo> swordLeft = new LinkedList<spriteInfo>();
 	public static ArrayList<BoundingBox> boundaryBoxes = new ArrayList<BoundingBox>();
-	public static ArrayList<BoundingBox> itemBoxes = new ArrayList<BoundingBox>();
+	// public static ArrayList<BoundingBox> itemBoxes = new ArrayList<BoundingBox>();
 	public static spriteInfo playerSprite;	
 	// public static spriteInfo slashSprite;
 	// public static spriteInfo leftSlashSprite;
@@ -42,7 +43,7 @@ public class Main{
 	private static spriteInfo dialogTextbox;	
 	public static BoundingBox playerBox;
 	public static boolean tempHideString = false;
-	public static boolean isTreasureVisible = true;
+	// public static boolean isTreasureVisible = true;
 	private static Random rng = new Random();
 	public static boolean isDialogBoxShowing;
 	public static boolean isDoorUnlockedDialogue = false;
@@ -90,16 +91,17 @@ public class Main{
 		boundaryBoxes.add(new BoundingBox(1805, 1920, 0, 1080)); // Right 
 		
 		// Items 
-		treasure = new spriteInfo(new Vector2D(rng.nextInt(1730 - 123) + 123, rng.nextInt(948 - 121) + 121), "treasure");
+		// treasure = new spriteInfo(new Vector2D(rng.nextInt(1730 - 123) + 123, rng.nextInt(948 - 121) + 121), "treasure");
+		treasure = new Treasure();
 				
 		// Item BoundingBoxes
-		treasureBoundingBox = new BoundingBox(treasure.getCoords().getX() - 30, treasure.getCoords().getX() + 80, treasure.getCoords().getY() - 30, treasure.getCoords().getY() + 80);  // Collision Box of the treasure box, separate from the other boxes
-		System.out.println("Treasure X: " + treasure.getCoords().getX());
-		System.out.println("Treausre Y: " + treasure.getCoords().getY());
-		System.out.println("Treasure X1: " + treasureBoundingBox.getX1());
-		System.out.println("Treausre X2: " + treasureBoundingBox.getX2());
-		System.out.println("Treasure Y1: " + treasureBoundingBox.getY1());
-		System.out.println("Treasure Y2: " + treasureBoundingBox.getY2());
+		// treasureBoundingBox = new BoundingBox(treasure.getCoords().getX() - 30, treasure.getCoords().getX() + 80, treasure.getCoords().getY() - 30, treasure.getCoords().getY() + 80);  // Collision Box of the treasure box, separate from the other boxes
+		// System.out.println("Treasure X: " + treasure.getCoords().getX());
+		// System.out.println("Treausre Y: " + treasure.getCoords().getY());
+		//System.out.println("Treasure X1: " + treasureBoundingBox.getX1());
+		// System.out.println("Treausre X2: " + treasureBoundingBox.getX2());
+		//System.out.println("Treasure Y1: " + treasureBoundingBox.getY1());
+		// System.out.println("Treasure Y2: " + treasureBoundingBox.getY2());
 		
 		// Creating the background
 		spriteInfo background = new spriteInfo(new Vector2D(0, 0), "background");
@@ -111,8 +113,8 @@ public class Main{
 		ctrl.addSpriteToFrontBuffer(0, 0, "background");
 	
 		// Treasure visibility
-		if (isTreasureVisible) {
-			ctrl.addSpriteToFrontBuffer(treasure.getCoords().getX(), treasure.getCoords().getY(), "treasure");
+		if (treasure.isTreasureVisible()) {
+			ctrl.addSpriteToFrontBuffer(treasure.getSprite().getCoords().getX(), treasure.getSprite().getCoords().getY(), "treasure");
 		}
 	
 		// Direction
@@ -169,11 +171,11 @@ public class Main{
 		}
 		
 		// Checking the player's collision against chests
-		if (checkCollision(playerBox, treasureBoundingBox)) {
+		if (checkCollision(playerBox, treasure.getBoundingBox())) {
 			isChestOpenedDialogue = true;
 			KeyProcessor.oKeyEnabled = true;
 			if (!tempHideString) {
-				ctrl.drawString(treasure.getCoords().getX() - 50, treasure.getCoords().getY() + 70, "Press O to open the chest", white);
+				ctrl.drawString(treasure.getSprite().getCoords().getX() - 50, treasure.getSprite().getCoords().getY() + 70, "Press O to open the chest", white);
 			}
 		}
 		

@@ -47,7 +47,7 @@ public class Main{
 				
 		// Adding BoundingBoxes ArrayList
 		boundaryBoxes.add(new BoundingBox(0, 1530, 0, 74)); // Top part 1
-		boundaryBoxes.add(new BoundingBox(1679, 1920, 0, 70)); // Top part 2
+		boundaryBoxes.add(new BoundingBox(1729, 1920, 0, 70)); // Top part 2
 		boundaryBoxes.add(new BoundingBox(0, 48, 0, 1028)); // Left
 		boundaryBoxes.add(new BoundingBox(0, 1920, 1006, 1080)); // Bottom 
 		boundaryBoxes.add(new BoundingBox(1805, 1920, 0, 1080)); // Right 

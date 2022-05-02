@@ -29,7 +29,7 @@ public class KeyProcessor{
 			break;
 		case 'w':
 			if (!isPaused) {
-				changePosition(0, -(Main.speed));
+				changePosition(0, -(Main.player.getPlayerSpeed()));
 				changeToNextFrame();
 				// Main.playerBox.setY1(Main.playerBox.getY1() - Main.speed);
 				// Main.playerBox.setY2(Main.playerBox.getY1() + Main.playerBox.getWidthAndHeight());
@@ -38,9 +38,9 @@ public class KeyProcessor{
 		
 		case 'a':
 			if (!isPaused) {
-				changePosition(-(Main.speed), 0);
+				changePosition(-(Main.player.getPlayerSpeed()), 0);
 				changeToNextFrame();
-				Main.isRight = false;
+				Main.player.setPlayerFacingRight(false);
 				// Main.isFacingRight = false;
 				// Main.playerBox.setX1(Main.playerBox.getX1() - Main.speed);
 				// Main.playerBox.setX2(Main.playerBox.getX1() + Main.playerBox.getWidthAndHeight());
@@ -49,7 +49,7 @@ public class KeyProcessor{
 			
 		case 's':
 			if (!isPaused) {
-				changePosition(0, Main.speed);
+				changePosition(0, Main.player.getPlayerSpeed());
 				changeToNextFrame();
 				// Main.playerBox.setY1(Main.playerBox.getY1() + Main.speed);
 				// Main.playerBox.setY2(Main.playerBox.getY1() + Main.playerBox.getWidthAndHeight());
@@ -58,9 +58,9 @@ public class KeyProcessor{
 			
 		case 'd':
 			if (!isPaused) {
-				changePosition(Main.speed, 0);
+				changePosition(Main.player.getPlayerSpeed(), 0);
 				changeToNextFrame();
-				Main.isRight = true;
+				Main.player.setPlayerFacingRight(true);
 				// Main.isFacingRight = true;
 			}
 			break;
@@ -89,7 +89,7 @@ public class KeyProcessor{
 				Main.tempHideString = false; // Puts that String back after the dialog box is finished showing
 				isPaused = false;
 				Main.isDialogBoxShowing = false;
-				Main.hasSword = true;
+				Main.player.setPlayerHaveSword(true);
 				oKeyEnabled = false;
 				qKeyEnabled = false;
 				if (Main.isChestOpenedDialogue) {
@@ -104,13 +104,13 @@ public class KeyProcessor{
 	
 	
 	private static void changePosition(int xMove, int yMove) {
-		Main.startPosition.setX(Main.startPosition.getX() + xMove);
-		Main.startPosition.setY(Main.startPosition.getY() + yMove);
+		Main.player.getStartingPosition().setX(Main.player.getStartingPosition().getX() + xMove);
+		Main.player.getStartingPosition().setY(Main.player.getStartingPosition().getY() + yMove);
 	}
 	private static void changeToNextFrame() {
-		Main.spritesRight.add(Main.spritesRight.remove());
-		Main.spritesLeft.add(Main.spritesLeft.remove());
-		Main.swordRight.add(Main.swordRight.remove());
-		Main.swordLeft.add(Main.swordLeft.remove());
+		Main.player.getSpritesRight().add(Main.player.getSpritesRight().remove());
+		Main.player.getSpritesLeft().add(Main.player.getSpritesLeft().remove());
+		Main.player.getSwordRight().add(Main.player.getSwordRight().remove());
+		Main.player.getSwordLeft().add(Main.player.getSwordLeft().remove());
 	}
 }

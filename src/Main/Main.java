@@ -80,7 +80,12 @@ public class Main{
 		
 		// Item BoundingBoxes
 		treasureBoundingBox = new BoundingBox(treasure.getCoords().getX() - 30, treasure.getCoords().getX() + 80, treasure.getCoords().getY() - 30, treasure.getCoords().getY() + 80);  // Collision Box of the treasure box, separate from the other boxes
-		
+		System.out.println("Treasure X: " + treasure.getCoords().getX());
+		System.out.println("Treausre Y: " + treasure.getCoords().getY());
+		System.out.println("Treasure X1: " + treasureBoundingBox.getX1());
+		System.out.println("Treausre X2: " + treasureBoundingBox.getX2());
+		System.out.println("Treasure Y1: " + treasureBoundingBox.getY1());
+		System.out.println("Treasure Y2: " + treasureBoundingBox.getY2());
 		
 		// Creating the background
 		spriteInfo background = new spriteInfo(new Vector2D(0, 0), "background");

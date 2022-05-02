@@ -39,6 +39,9 @@ public class Main{
 	/* This is your access to things BEFORE the game loop starts */
 	public static void start(){
 		
+		// Debugging sysouts go here
+		System.out.println(player.getPlayerBoundingBox().getX1() + " " + player.getPlayerBoundingBox().getY1());
+		
 		// Player Sprite
 		player = new Player();	
 		

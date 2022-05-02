@@ -17,6 +17,8 @@ import timer.stopWatchX;
 
 public class Main{
 	// Fields (Static) below...
+	private static spriteInfo treasure;
+	public static BoundingBox treasureBoundingBox;
 	public static stopWatchX timer = new stopWatchX(3000);
 	private static Color white = new Color(255, 255, 255);
 	public static String trigger = "";
@@ -26,7 +28,6 @@ public class Main{
 	public static boolean visible = true;
 	public static boolean isRight = true;
 	public static boolean hasSword = false;
-	public static boolean isTreasureVisible = true;
 	public static Queue<spriteInfo> spritesRight = new LinkedList<spriteInfo>();
 	public static Queue<spriteInfo> spritesLeft = new LinkedList<spriteInfo>();
 	public static Queue<spriteInfo> swordRight = new LinkedList<spriteInfo>();
@@ -35,9 +36,9 @@ public class Main{
 	public static ArrayList<BoundingBox> itemBoxes = new ArrayList<BoundingBox>();
 	public static spriteInfo playerSprite = new spriteInfo(startPosition, "frame1");
 	public static BoundingBox playerBox;
-	public static BoundingBox treasureBoundingBox;
+	
+	public static boolean isTreasureVisible = true;
 	private static Random rng = new Random();
-	private static spriteInfo treasure;
 	// private static spriteInfo treasureLeft;
 	// private static spriteInfo treasureRight;
 	// private static spriteInfo treasureUp;

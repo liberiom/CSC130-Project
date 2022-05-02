@@ -20,9 +20,9 @@ public class Main{
 	// private static spriteInfo treasure;
 	// public static BoundingBox treasureBoundingBox;
 	public static Treasure treasure;
-	public static stopWatchX timer = new stopWatchX(3000);
+	// public static stopWatchX timer = new stopWatchX(3000);
 	private static Color white = new Color(255, 255, 255);
-	public static String trigger = "";
+	// public static String trigger = "";
 	public static Vector2D startPosition = new Vector2D(500, 500);
 	public static Vector2D dummyVector2D = new Vector2D(0, 0);
 	public static int speed = 10;

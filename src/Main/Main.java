@@ -138,6 +138,7 @@ public class Main{
 		
 		// Checking the player's collision against chests
 		if (checkCollision(playerBox, treasureBoundingBox)) {
+			KeyProcessor.oKeyEnabled = true;
 			ctrl.drawString(treasure.getCoords().getX() - 50, treasure.getCoords().getY() + 70, "Press O to open the chest", white);
 		}
 		

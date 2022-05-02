@@ -10,6 +10,8 @@ public class KeyProcessor{
 	private static char last = ' ';			// For debouncing purposes
 	private static stopWatchX sw = new stopWatchX(50);
 	public static boolean isPaused = false;
+	public static boolean oKeyEnabled = false;
+	public static boolean qKeyEnabled = false;
 	
 	// Static Method(s)
 	public static void processKey(char key){
@@ -72,14 +74,21 @@ public class KeyProcessor{
 			
 		case 'o':
 			System.out.println("O has been pressed");
-			Main.isDialogBoxShowing = true;
+			if (oKeyEnabled) {
+				Main.isDialogBoxShowing = true;
+				qKeyEnabled = true; // I put this here so that people can't just skip the order of flow by just pressing the Q key before pressing the O key
+			}
 			break;
 			
 		case 'q':
 			System.out.println("Q has been pressed");
-			isPaused = false;
-			Main.isDialogBoxShowing = false;
-			Main.hasSword = true;
+			if (qKeyEnabled) {
+				isPaused = false;
+				Main.isDialogBoxShowing = false;
+				Main.hasSword = true;
+				oKeyEnabled = false;
+				qKeyEnabled = false;
+			}
 			break;
 		}
 	}

@@ -75,6 +75,7 @@ public class KeyProcessor{
 		case 'o':
 			System.out.println("O has been pressed");
 			if (oKeyEnabled) {
+				Main.tempHideString = true; // Temporarily hides the String in case it overlays the dialog box
 				Main.isDialogBoxShowing = true;
 				qKeyEnabled = true; // I put this here so that people can't just skip the order of flow by just pressing the Q key before pressing the O key
 			}
@@ -83,6 +84,7 @@ public class KeyProcessor{
 		case 'q':
 			System.out.println("Q has been pressed");
 			if (qKeyEnabled) {
+				Main.tempHideString = false; // Puts that String back after the dialog box is finished showing
 				isPaused = false;
 				Main.isDialogBoxShowing = false;
 				Main.hasSword = true;

@@ -36,6 +36,7 @@ public class Main{
 	public static ArrayList<BoundingBox> itemBoxes = new ArrayList<BoundingBox>();
 	public static spriteInfo playerSprite = new spriteInfo(startPosition, "frame1");
 	public static BoundingBox playerBox;
+	public static boolean tempHideString = false;
 	
 	public static boolean isTreasureVisible = true;
 	private static Random rng = new Random();
@@ -119,7 +120,7 @@ public class Main{
 		
 		// Dialog Box toggling 
 		if (isDialogBoxShowing) {
-			ctrl.addSpriteToFrontBuffer(658, 776, "dialogueTextBox");
+			ctrl.addSpriteToFrontBuffer(737, 459, "dialogueTextBox");
 			KeyProcessor.isPaused = true;
 		}
 		
@@ -139,7 +140,9 @@ public class Main{
 		// Checking the player's collision against chests
 		if (checkCollision(playerBox, treasureBoundingBox)) {
 			KeyProcessor.oKeyEnabled = true;
-			ctrl.drawString(treasure.getCoords().getX() - 50, treasure.getCoords().getY() + 70, "Press O to open the chest", white);
+			if (!tempHideString) {
+				ctrl.drawString(treasure.getCoords().getX() - 50, treasure.getCoords().getY() + 70, "Press O to open the chest", white);
+			}
 		}
 		
 	}

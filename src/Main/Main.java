@@ -35,8 +35,10 @@ public class Main{
 	public static ArrayList<BoundingBox> boundaryBoxes = new ArrayList<BoundingBox>();
 	public static ArrayList<BoundingBox> itemBoxes = new ArrayList<BoundingBox>();
 	public static spriteInfo playerSprite;	
-	public static spriteInfo slashSprite;
-	public static spriteInfo flippedSlashSprite;
+	// public static spriteInfo slashSprite;
+	// public static spriteInfo leftSlashSprite;
+	// public static spriteInfo upSlashSprite;
+	// public static spriteInfo downSlashSprite;
 	private static spriteInfo dialogTextbox;	
 	public static BoundingBox playerBox;
 	public static boolean tempHideString = false;
@@ -49,7 +51,6 @@ public class Main{
 	public static boolean isKeyDialog = false;
 	public static boolean isSlashing = false;
 	public static boolean isFacingRight = true;
-	private static BoundingBox slashBoundingBox;
 	
 	// End Static fields...
 	public static void main(String[] args) {
@@ -64,8 +65,8 @@ public class Main{
 		playerSprite = new spriteInfo(startPosition, "frame1");
 		
 		// Slash
-		slashSprite = new spriteInfo(new Vector2D(-100, -100), "slash");
-		flippedSlashSprite = new spriteInfo(new Vector2D(-100, -100), "flippedslash");
+		// slashSprite = new spriteInfo(new Vector2D(-100, -100), "slash");
+		// leftSlashSprite = new spriteInfo(new Vector2D(-100, -100), "flippedslash");
 		
 		// Loading the walking variables
 		for (int i = 1; i <= 8; i++) {
@@ -177,29 +178,7 @@ public class Main{
 		}
 		
 		// Slashing
-		if (isSlashing) {
-			stopWatchX slashSW = new stopWatchX(10000);
-			if (isFacingRight) {
-				slashSprite = new spriteInfo(new Vector2D(playerSprite.getCoords().getX() + 70, playerSprite.getCoords().getY()), "slash");
-				slashBoundingBox = new BoundingBox(slashSprite, 100, 30);
-				ctrl.addSpriteToFrontBuffer(slashSprite.getCoords().getX(), slashSprite.getCoords().getY(), "slash");
-				if (slashSW.isTimeUp()) {
-					slashSW.resetWatch();
-					slashBoundingBox.destroy();
-					slashSprite = new spriteInfo(new Vector2D(-100, -100), "slash");
-				}
-			} else {
-				flippedSlashSprite = new spriteInfo(new Vector2D(playerSprite.getCoords().getX() - 30, playerSprite.getCoords().getY()), "flippedslash");
-				slashBoundingBox = new BoundingBox(flippedSlashSprite, 100, 30);
-				ctrl.addSpriteToFrontBuffer(flippedSlashSprite.getCoords().getX(), flippedSlashSprite.getCoords().getY(), "flippedslash");
-				if (slashSW.isTimeUp()) {
-					slashSW.resetWatch();
-					slashBoundingBox.destroy();
-					flippedSlashSprite = new spriteInfo(new Vector2D(-100, -100), "slash");
-				}
-			}
-			isSlashing = false;
-		}
+		
 		
 	}
 	

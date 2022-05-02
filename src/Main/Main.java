@@ -34,17 +34,17 @@ public class Main{
 	public static Queue<spriteInfo> swordLeft = new LinkedList<spriteInfo>();
 	public static ArrayList<BoundingBox> boundaryBoxes = new ArrayList<BoundingBox>();
 	public static ArrayList<BoundingBox> itemBoxes = new ArrayList<BoundingBox>();
-	public static spriteInfo playerSprite = new spriteInfo(startPosition, "frame1");
+	public static spriteInfo playerSprite;	
+	private static spriteInfo dialogTextbox;	
 	public static BoundingBox playerBox;
 	public static boolean tempHideString = false;
-	
 	public static boolean isTreasureVisible = true;
 	private static Random rng = new Random();
-	// private static spriteInfo treasureLeft;
-	// private static spriteInfo treasureRight;
-	// private static spriteInfo treasureUp;
-	// private static spriteInfo treasureDown;
 	public static boolean isDialogBoxShowing;
+	private static boolean isDoorUnlockedDialogue = false;
+	private static boolean isDoorLockedDialogue = false;
+	private static boolean isChestOpenedDialogue = false;
+	private static boolean isKeyDialog = false;
 	
 	// End Static fields...
 	public static void main(String[] args) {
@@ -54,6 +54,9 @@ public class Main{
 	
 	/* This is your access to things BEFORE the game loop starts */
 	public static void start(){
+		
+		// Player Sprite
+		playerSprite = new spriteInfo(startPosition, "frame1");
 		
 		// Loading the walking variables
 		for (int i = 1; i <= 8; i++) {
@@ -65,6 +68,9 @@ public class Main{
 	
 		// Player Box
 		playerBox = new BoundingBox(playerSprite, 128, 128);
+		
+		// Dialog Boxes
+		dialogTextbox = new spriteInfo(new Vector2D(737, 459), "dialogTextbox");
 				
 		// Adding BoundingBoxes ArrayList
 		boundaryBoxes.add(new BoundingBox(0, 1580, 0, 74)); // Top part 1
@@ -75,11 +81,7 @@ public class Main{
 		
 		// Items 
 		treasure = new spriteInfo(new Vector2D(rng.nextInt(1730 - 123) + 123, rng.nextInt(948 - 121) + 121), "treasure");
-		// treasureLeft = new spriteInfo(new Vector2D(treasure.getCoords().getX() - 50 - 1, treasure.getCoords().getY()), "nothing");
-		// treasureRight = new spriteInfo(new Vector2D(treasure.getCoords().getX() + 51, treasure.getCoords().getY()), "nothing");
-		// treasureUp = new spriteInfo(new Vector2D(treasure.getCoords().getX(), treasure.getCoords().getY() - 51), "nothing");
-		// treasureDown = new spriteInfo(new Vector2D(treasure.getCoords().getX(), treasure.getCoords().getY() + 51), "nothing");
-		
+				
 		// Item BoundingBoxes
 		treasureBoundingBox = new BoundingBox(treasure.getCoords().getX() - 30, treasure.getCoords().getX() + 80, treasure.getCoords().getY() - 30, treasure.getCoords().getY() + 80);  // Collision Box of the treasure box, separate from the other boxes
 		System.out.println("Treasure X: " + treasure.getCoords().getX());
@@ -120,7 +122,21 @@ public class Main{
 		
 		// Dialog Box toggling 
 		if (isDialogBoxShowing) {
-			ctrl.addSpriteToFrontBuffer(737, 459, "dialogueTextBox");
+			ctrl.addSpriteToFrontBuffer(dialogTextbox.getCoords().getX(), dialogTextbox.getCoords().getY(), dialogTextbox.getTag());
+			/*
+			 * TODO: Test Dialog here 
+			 */
+			if (isChestOpenedDialogue) {
+				
+			} else if (isDoorUnlockedDialogue) {
+				
+			} else if (isDoorLockedDialogue) {
+				
+			} else if (isKeyDialog) {
+				
+			} else {
+				
+			}
 			KeyProcessor.isPaused = true;
 		}
 		

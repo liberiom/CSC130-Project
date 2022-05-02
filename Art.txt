@@ -34,4 +34,4 @@ Art/flippedsword5.png*flippedsword5
 Art/flippedsword6.png*flippedsword6
 Art/flippedsword7.png*flippedsword7
 Art/flippedsword8.png*flippedsword8
-Art/nothing.png*nothing
+Art/dialogTextbox.png*dialogueTextbox

@@ -9,6 +9,7 @@ public class KeyProcessor{
 	// Static Fields
 	private static char last = ' ';			// For debouncing purposes
 	private static stopWatchX sw = new stopWatchX(50);
+	public static boolean isPaused = false;
 	
 	// Static Method(s)
 	public static void processKey(char key){
@@ -25,31 +26,39 @@ public class KeyProcessor{
 			System.exit(0);
 			break;
 		case 'w':
-			changePosition(0, -(Main.speed));
-			changeToNextFrame();
-			// Main.playerBox.setY1(Main.playerBox.getY1() - Main.speed);
-			// Main.playerBox.setY2(Main.playerBox.getY1() + Main.playerBox.getWidthAndHeight());
+			if (!isPaused) {
+				changePosition(0, -(Main.speed));
+				changeToNextFrame();
+				// Main.playerBox.setY1(Main.playerBox.getY1() - Main.speed);
+				// Main.playerBox.setY2(Main.playerBox.getY1() + Main.playerBox.getWidthAndHeight());
+			}
 			break;
 		
 		case 'a':
-			changePosition(-(Main.speed), 0);
-			changeToNextFrame();
-			Main.isRight = false;
-			// Main.playerBox.setX1(Main.playerBox.getX1() - Main.speed);
-			// Main.playerBox.setX2(Main.playerBox.getX1() + Main.playerBox.getWidthAndHeight());
+			if (!isPaused) {
+				changePosition(-(Main.speed), 0);
+				changeToNextFrame();
+				Main.isRight = false;
+				// Main.playerBox.setX1(Main.playerBox.getX1() - Main.speed);
+				// Main.playerBox.setX2(Main.playerBox.getX1() + Main.playerBox.getWidthAndHeight());
+			}
 			break;
 			
 		case 's':
-			changePosition(0, Main.speed);
-			changeToNextFrame();
-			// Main.playerBox.setY1(Main.playerBox.getY1() + Main.speed);
-			// Main.playerBox.setY2(Main.playerBox.getY1() + Main.playerBox.getWidthAndHeight());
+			if (!isPaused) {
+				changePosition(0, Main.speed);
+				changeToNextFrame();
+				// Main.playerBox.setY1(Main.playerBox.getY1() + Main.speed);
+				// Main.playerBox.setY2(Main.playerBox.getY1() + Main.playerBox.getWidthAndHeight());
+			}
 			break;
 			
 		case 'd':
-			changePosition(Main.speed, 0);
-			changeToNextFrame();
-			Main.isRight = true;
+			if (!isPaused) {
+				changePosition(Main.speed, 0);
+				changeToNextFrame();
+				Main.isRight = true;
+			}
 			break;
 			
 		case '$':
@@ -63,6 +72,15 @@ public class KeyProcessor{
 			
 		case 'o':
 			System.out.println("O has been pressed");
+			Main.isDialogBoxShowing = true;
+			break;
+			
+		case 'q':
+			System.out.println("Q has been pressed");
+			isPaused = false;
+			Main.isDialogBoxShowing = false;
+			Main.hasSword = true;
+			break;
 		}
 	}
 	

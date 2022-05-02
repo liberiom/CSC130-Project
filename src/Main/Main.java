@@ -25,23 +25,24 @@ public class Main{
 	public static int speed = 10;
 	public static boolean visible = true;
 	public static boolean isRight = true;
+	public static boolean hasSword = false;
+	public static boolean isTreasureVisible = true;
 	public static Queue<spriteInfo> spritesRight = new LinkedList<spriteInfo>();
 	public static Queue<spriteInfo> spritesLeft = new LinkedList<spriteInfo>();
 	public static Queue<spriteInfo> swordRight = new LinkedList<spriteInfo>();
 	public static Queue<spriteInfo> swordLeft = new LinkedList<spriteInfo>();
-	public static boolean hasSword = false;
 	public static ArrayList<BoundingBox> boundaryBoxes = new ArrayList<BoundingBox>();
 	public static ArrayList<BoundingBox> itemBoxes = new ArrayList<BoundingBox>();
 	public static spriteInfo playerSprite = new spriteInfo(startPosition, "frame1");
 	public static BoundingBox playerBox;
 	public static BoundingBox treasureBoundingBox;
 	private static Random rng = new Random();
-	public static boolean isTreasureVisible = true;
 	private static spriteInfo treasure;
-	private static spriteInfo treasureLeft;
-	private static spriteInfo treasureRight;
-	private static spriteInfo treasureUp;
-	private static spriteInfo treasureDown;
+	// private static spriteInfo treasureLeft;
+	// private static spriteInfo treasureRight;
+	// private static spriteInfo treasureUp;
+	// private static spriteInfo treasureDown;
+	public static boolean isDialogBoxShowing;
 	
 	// End Static fields...
 	public static void main(String[] args) {
@@ -110,6 +111,12 @@ public class Main{
 			}
 		}
 		
+		// Dialog Box toggling 
+		if (isDialogBoxShowing) {
+			ctrl.addSpriteToFrontBuffer(658, 776, "dialogueTextBox");
+			KeyProcessor.isPaused = true;
+		}
+		
 		// Updating the player's BoundingBox
 		playerBox.setX1(playerSprite.getCoords().getX());
 		playerBox.setX2(playerBox.getX1() + playerBox.getWidth());
@@ -125,7 +132,7 @@ public class Main{
 		
 		// Checking the player's collision against chests
 		if (checkCollision(playerBox, treasureBoundingBox)) {
-			ctrl.drawString(treasureBoundingBox.getX1(), treasureBoundingBox.getY2(), "Press O to open the chest", white);
+			ctrl.drawString(treasure.getCoords().getX() - 50, treasure.getCoords().getY() + 70, "Press O to open the chest", white);
 		}
 		
 	}

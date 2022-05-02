@@ -41,6 +41,7 @@ public class KeyProcessor{
 				changePosition(-(Main.speed), 0);
 				changeToNextFrame();
 				Main.isRight = false;
+				Main.isFacingRight = false;
 				// Main.playerBox.setX1(Main.playerBox.getX1() - Main.speed);
 				// Main.playerBox.setX2(Main.playerBox.getX1() + Main.playerBox.getWidthAndHeight());
 			}
@@ -60,6 +61,7 @@ public class KeyProcessor{
 				changePosition(Main.speed, 0);
 				changeToNextFrame();
 				Main.isRight = true;
+				Main.isFacingRight = true;
 			}
 			break;
 			

@@ -77,17 +77,17 @@ public class Main{
 		}
 	
 		// Player Box
-		playerBox = new BoundingBox(playerSprite, 128, 128);
+		playerBox = new BoundingBox(playerSprite, 30, 100);
 		
 		// Dialog Boxes
 		dialogTextbox = new spriteInfo(new Vector2D(737, 459), "dialogueTextbox");
 				
 		// Adding BoundingBoxes ArrayList
-		boundaryBoxes.add(new BoundingBox(0, 1580, 0, 74)); // Top part 1
-		boundaryBoxes.add(new BoundingBox(1729, 1920, 0, 70)); // Top part 2
+		boundaryBoxes.add(new BoundingBox(0, 1530, 0, 74)); // Top part 1
+		boundaryBoxes.add(new BoundingBox(1709, 1920, 0, 70)); // Top part 2
 		boundaryBoxes.add(new BoundingBox(0, 48, 0, 1028)); // Left
-		boundaryBoxes.add(new BoundingBox(0, 1920, 1026, 1080)); // Bottom 
-		boundaryBoxes.add(new BoundingBox(1855, 1920, 0, 1080)); // Right 
+		boundaryBoxes.add(new BoundingBox(0, 1920, 1006, 1080)); // Bottom 
+		boundaryBoxes.add(new BoundingBox(1805, 1920, 0, 1080)); // Right 
 		
 		// Items 
 		treasure = new spriteInfo(new Vector2D(rng.nextInt(1730 - 123) + 123, rng.nextInt(948 - 121) + 121), "treasure");

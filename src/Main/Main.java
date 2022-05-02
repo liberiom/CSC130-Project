@@ -99,7 +99,7 @@ public class Main{
 	
 		// Treasure visibility
 		if (isTreasureVisible) {
-			ctrl.addSpriteToFrontBuffer(treasure.getCoords().getX(), treasure.getCoords().getX(), "treasure");
+			ctrl.addSpriteToFrontBuffer(treasure.getCoords().getX(), treasure.getCoords().getY(), "treasure");
 		}
 	
 		// Direction

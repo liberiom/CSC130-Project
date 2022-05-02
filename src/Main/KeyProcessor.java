@@ -66,7 +66,9 @@ public class KeyProcessor{
 			break;
 			
 		case '$':
-			Main.trigger = "space bar is triggered";
+			if (Main.hasSword) {
+				Main.isSlashing = true;
+			}
 			break;
 			
 		case 'm':

@@ -32,7 +32,9 @@ public class Main{
 	private static int thinning = 20;
 	private static ArrayList<Ghost> ghosts = new ArrayList<Ghost>();
 	private static int slashFrames;
-	
+	private static final int FINAL_SLASH_FRAMES = 120;
+	private static final int NUM_OF_GHOSTS = 3;
+	private static Ghost ghost1, ghost2, ghost3;
 	// End Static fields...
 	public static void main(String[] args) {
 		Control ctrl = new Control();				// Do NOT remove!
@@ -59,7 +61,18 @@ public class Main{
 		treasure = new Treasure();
 		
 		// Ghosts
-		ghosts.add(new Ghost());
+		/*
+		 * for (int i = 0; i < NUM_OF_GHOSTS; i++) {
+			ghosts.add(new Ghost());
+			System.out.println(ghosts.get(i).getSprite().getCoords().getX()); 
+			System.out.println(ghosts.get(i).getSprite().getCoords().getY());
+		}
+		 */
+		ghost1 = new Ghost();
+		ghost2 = new Ghost();
+		ghost3 = new Ghost();
+		
+		
 		
 		// Creating the background
 		spriteInfo background = new spriteInfo(new Vector2D(0, 0), "background");
@@ -72,15 +85,15 @@ public class Main{
 	public static void update(Control ctrl) {
 		ctrl.addSpriteToFrontBuffer(0, 0, "background");
 		// Debugging sysouts go here
-		System.out.println(player.getPlayerBoundingBox().getX1() + " " + player.getPlayerBoundingBox().getY1());
-		
-		// Ghost visibility
-		for (int i = 0; i < ghosts.size(); i++) {
+		// System.out.println(player.getPlayerBoundingBox().getX1() + " " + player.getPlayerBoundingBox().getY1());
+			
+		/*
+		 * for (int i = 0; i < ghosts.size(); i++) {
 			if (ghosts.get(i).getVisibility()) {
 				ctrl.addSpriteToFrontBuffer(ghosts.get(i).getSprite().getCoords().getX(), ghosts.get(i).getSprite().getCoords().getY(), ghosts.get(i).getSprite().getTag());
 			}
 			if (ghosts.get(i).hasBeenHit()) {
-				if (slashFrames < 180) {
+				if (slashFrames < FINAL_SLASH_FRAMES) {
 					ctrl.addSpriteToFrontBuffer(ghosts.get(i).getSlashSprite().getCoords().getX(), ghosts.get(i).getSlashSprite().getCoords().getY(), ghosts.get(i).getSlashSprite().getTag());
 					slashFrames++;
 				} else {
@@ -88,6 +101,9 @@ public class Main{
 				}
 			}
 		}
+		 */
+
+		
 
 		// Door visibility
 		if (door.isDoorLocked()) {
@@ -128,6 +144,8 @@ public class Main{
 				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 1), "You found a sword", white);
 			} else if (isDoorLockedDialogue) {
 				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 1), "Hmm... this door seems to be locked. There must be a key somewhere...", white);
+				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 1), "somewhere...", white);
+				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 10), "Press Q to quit", white);
 			} else if (isKeyDialog) {
 				
 			}
@@ -164,20 +182,27 @@ public class Main{
 		
 		// Door dialogue
 		if (checkCollision(player.getPlayerBoundingBox(), door.getDialogueBoundingBox())) {
-			ctrl.drawString(door.getSprite().getCoords().getX(), door.getBoundingBox().getY2(), "Press u to open door", white);
+			ctrl.drawString(door.getSprite().getCoords().getX(), door.getBoundingBox().getY2(), "Press U to Open Door", white);
 			KeyProcessor.uKeyEnabled = true;
 		} else {
 			KeyProcessor.uKeyEnabled = false;
 		}
 		
-		// Ghost defensive collision
-		for (int i = 0; i < ghosts.size(); i++) {
+		// Ghost offensive collision
+		/*
+		 * for (int i = 0; i < ghosts.size(); i++) {
 			if (checkCollision(player.getPlayerBoundingBox(), ghosts.get(i).getOffensiveBoundingBox())) {
 				KeyProcessor.spaceKeyEnabled = true;
 				Ghost.setGhostTarget(ghosts.get(i));
 			} else {
 				KeyProcessor.spaceKeyEnabled = false;
 			}
+		}
+		 */
+		
+		// Ghost Defensive Collision
+		for (int i = 0; i < ghosts.size(); i++) {
+			// TODO: Add stuff here
 		}
 	}
 	

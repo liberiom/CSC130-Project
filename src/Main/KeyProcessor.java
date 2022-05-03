@@ -65,7 +65,7 @@ public class KeyProcessor{
 			
 		case '$':
 			if (spaceKeyEnabled) {
-				Ghost.getGhostTarget().hitAnimation();
+				Ghost.getGhostTarget().hitAnimation(Main.player);
 			}
 			break;
 			

@@ -13,7 +13,7 @@ public class Ghost {
 	private spriteInfo slashSprite;
 	private BoundingBox defensiveBoundingBox; // The box for hitting the user
 	private BoundingBox offensiveBoundingBox; // The box for getting hit by the user
-	private final int GAP = 100;
+	private final int GAP = 20; // Small gap may be necessary to prevent too large of a hitbox
 	private boolean isVisible = true;
 	private boolean isHit = false;
 	private static Ghost ghostTarget;
@@ -28,7 +28,7 @@ public class Ghost {
 		this.sprite = new spriteInfo(new Vector2D(rng.nextInt(1730 - 123) + 123, rng.nextInt(948 - 121) + 121), "ghost");
 		this.slashSprite = new spriteInfo(new Vector2D(sprite.getCoords().getX() - SLASH_X_GAP, sprite.getCoords().getY() - SLASH_Y_GAP), "slash");
 		this.defensiveBoundingBox = new BoundingBox(sprite, 100, 100);
-		this.offensiveBoundingBox = new BoundingBox(defensiveBoundingBox.getX1() - GAP, defensiveBoundingBox.getX2() + GAP, defensiveBoundingBox.getY1() - GAP, defensiveBoundingBox.getY2() + GAP); // Based off of the defensive bounding box
+		this.offensiveBoundingBox = new BoundingBox(defensiveBoundingBox.getX1() - (GAP * 4), defensiveBoundingBox.getX2() + GAP, defensiveBoundingBox.getY1() - (GAP * 4), defensiveBoundingBox.getY2() + GAP); // Based off of the defensive bounding box
 	}
 	
 	
@@ -37,12 +37,14 @@ public class Ghost {
 		// this.isHit = true;
 	// }
 	
-	public void hitAnimation() {
-		this.isHit = true;
-		this.defensiveBoundingBox.destroy();
-		this.offensiveBoundingBox.destroy();
-		this.isVisible = false;
-		// sprite.setCoords(-200, -200); // Maybe same coordinates as the BoundingBox disposal location? --> Actually unncessary, use an isVisible variable instead
+	public void hitAnimation(Player player) {
+		if (player.doesPlayerHaveSword()) {
+			this.isHit = true;
+			this.defensiveBoundingBox.destroy();
+			this.offensiveBoundingBox.destroy();
+			this.isVisible = false;
+			// sprite.setCoords(-200, -200); // Maybe same coordinates as the BoundingBox disposal location? --> Actually unncessary, use an isVisible variable instead
+		}
 	}
 	
 	public boolean getVisibility() {

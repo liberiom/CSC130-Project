@@ -228,6 +228,19 @@ public class Main{
 			}
 		}
 		 */
+		if (checkCollision(player.getPlayerBoundingBox(), ghost1.getOffensiveBoundingBox())) {
+			KeyProcessor.spaceKeyEnabled = true;
+			Ghost.setGhostTarget(ghost1);
+		} else {
+			KeyProcessor.spaceKeyEnabled = false;
+		}
+		
+		if (checkCollision(player.getPlayerBoundingBox(), ghost2.getOffensiveBoundingBox())) {
+			KeyProcessor.spaceKeyEnabled = true;
+			Ghost.setGhostTarget(ghost2);
+		} else {
+			KeyProcessor.spaceKeyEnabled = false;
+		}
 		
 		// Ghost Defensive Collision
 		for (int i = 0; i < ghosts.size(); i++) {

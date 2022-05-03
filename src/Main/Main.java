@@ -117,8 +117,9 @@ public class Main{
 		}
 		
 		// Updating the player's BoundingBox
-		player.getPlayerBoundingBox().setX1(player.getPlayerSprite().getCoords().getX());
-		player.getPlayerBoundingBox().setX2(player.getPlayerBoundingBox().getX1() + player.getPlayerBoundingBox().getWidth());
+		int thinning = 10;
+		player.getPlayerBoundingBox().setX1(player.getPlayerSprite().getCoords().getX() + thinning);
+		player.getPlayerBoundingBox().setX2(player.getPlayerBoundingBox().getX1() + player.getPlayerBoundingBox().getWidth() - thinning);
 		player.getPlayerBoundingBox().setY1(player.getPlayerSprite().getCoords().getY());
 		player.getPlayerBoundingBox().setY2(player.getPlayerBoundingBox().getY1() + player.getPlayerBoundingBox().getHeight());
 		

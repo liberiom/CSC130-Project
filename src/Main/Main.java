@@ -29,7 +29,7 @@ public class Main{
 	public static boolean isDoorLockedDialogue = false;
 	public static boolean isChestOpenedDialogue = false;
 	public static boolean isKeyDialog = false;
-	private static int thinning = 50;
+	private static int thinning = 30;
 	
 	// End Static fields...
 	public static void main(String[] args) {

@@ -14,6 +14,9 @@ public class Key {
 		this.boundingBox = boundingBox;
 	}
 	
+	// Other constructor to avoid NullPointerExceptions
+	public Key() {}
+	
 	public boolean getVisibility() {
 		return this.isVisible;
 	}

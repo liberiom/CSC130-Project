@@ -28,6 +28,7 @@ public class Ghost {
 	private final int SLASH_Y_GAP = 50;
 	
 	public Ghost(String tag, String slashTag) {
+		key = new Key();
 		rng = new Random();
 		this.slashTag = slashTag;
 		this.tag = tag;

@@ -31,9 +31,9 @@ public class Main{
 	public static boolean isKeyDialog = false;
 	private static int thinning = 20;
 	private static ArrayList<Ghost> ghosts = new ArrayList<Ghost>();
-	private static int slashFrames1, slashFrames2, slashFrames3;
+	private static int slashFrames1;
+	private static int moveFrames;
 	private static final int FINAL_SLASH_FRAMES = 120;
-	private static final int NUM_OF_GHOSTS = 3;
 	private static Ghost ghost1, ghost2, ghost3;
 	// End Static fields...
 	public static void main(String[] args) {
@@ -70,6 +70,7 @@ public class Main{
 		 */
 		ghost1 = new Ghost("ghost1", "slash1");
 		slashFrames1 = 0;
+		moveFrames = 0;
 		
 		// Creating the background
 		spriteInfo background = new spriteInfo(new Vector2D(0, 0), "background");
@@ -89,7 +90,13 @@ public class Main{
 		 */
 		
 		if (ghost1.getVisibility()) {
+			moveFrames++;
 			ctrl.addSpriteToFrontBuffer(ghost1.getSprite().getCoords().getX(), ghost1.getSprite().getCoords().getY(), ghost1.getSprite().getTag());
+			if (moveFrames < 20) {
+				ghost1.move();
+			} else {
+				resetFrames(moveFrames);
+			}
 		}
 		if (ghost1.hasBeenHit()) {
 			if (slashFrames1 < FINAL_SLASH_FRAMES) {

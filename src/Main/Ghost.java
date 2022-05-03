@@ -17,6 +17,7 @@ public class Ghost {
 	private boolean isVisible = true;
 	private boolean isHit = false;
 	private static Ghost ghostTarget;
+	private int speed = 10;
 	// private stopWatchX sw;
 	
 	// Trial and Error
@@ -44,6 +45,16 @@ public class Ghost {
 			this.offensiveBoundingBox.destroy();
 			this.isVisible = false;
 			// sprite.setCoords(-200, -200); // Maybe same coordinates as the BoundingBox disposal location? --> Actually unncessary, use an isVisible variable instead
+		}
+	}
+	
+	public void move() {
+		int randomNum = rng.nextInt(5);
+		if (randomNum == 0 && this.offensiveBoundingBox.getX2() + speed > Main.boundaryBoxes.get(4).getX1()) {
+			// Move right
+			this.sprite = new spriteInfo(new Vector2D(this.sprite.getCoords().getX() + speed, this.sprite.getCoords().getY()), "ghost1");
+			this.defensiveBoundingBox = new BoundingBox(this.defensiveBoundingBox.getX1() + speed, this.defensiveBoundingBox.getX2() + speed, this.defensiveBoundingBox.getY1(), this.defensiveBoundingBox.getY2());
+			this.offensiveBoundingBox = new BoundingBox(this.offensiveBoundingBox.getX1() + speed, this.offensiveBoundingBox.getX2() + speed, this.offensiveBoundingBox.getY1(), this.offensiveBoundingBox.getY2());
 		}
 	}
 	

@@ -30,6 +30,8 @@ public class Main{
 	public static boolean isChestOpenedDialogue = false;
 	public static boolean isKeyDialog = false;
 	private static int thinning = 20;
+	private static ArrayList<Ghost> ghosts = new ArrayList<Ghost>();
+	private static int slashFrames;
 	
 	// End Static fields...
 	public static void main(String[] args) {
@@ -56,6 +58,9 @@ public class Main{
 		// Items 
 		treasure = new Treasure();
 		
+		// Ghosts
+		ghosts.add(new Ghost());
+		
 		// Creating the background
 		spriteInfo background = new spriteInfo(new Vector2D(0, 0), "background");
 	
@@ -68,6 +73,21 @@ public class Main{
 		ctrl.addSpriteToFrontBuffer(0, 0, "background");
 		// Debugging sysouts go here
 		System.out.println(player.getPlayerBoundingBox().getX1() + " " + player.getPlayerBoundingBox().getY1());
+		
+		// Ghost visibility
+		for (int i = 0; i < ghosts.size(); i++) {
+			if (ghosts.get(i).getVisibility()) {
+				ctrl.addSpriteToFrontBuffer(ghosts.get(i).getSprite().getCoords().getX(), ghosts.get(i).getSprite().getCoords().getY(), ghosts.get(i).getSprite().getTag());
+			}
+			if (ghosts.get(i).hasBeenHit()) {
+				if (slashFrames < 180) {
+					ctrl.addSpriteToFrontBuffer(ghosts.get(i).getSlashSprite().getCoords().getX(), ghosts.get(i).getSlashSprite().getCoords().getY(), ghosts.get(i).getSlashSprite().getTag());
+					slashFrames++;
+				} else {
+					resetFrames(slashFrames);
+				}
+			}
+		}
 
 		// Door visibility
 		if (door.isDoorLocked()) {
@@ -111,7 +131,6 @@ public class Main{
 			} else if (isKeyDialog) {
 				
 			}
-			// KeyProcessor.isPaused = true;
 		}
 		
 		// Updating the player's BoundingBox
@@ -151,9 +170,15 @@ public class Main{
 			KeyProcessor.uKeyEnabled = false;
 		}
 		
-		// Slashing
-		
-		
+		// Ghost defensive collision
+		for (int i = 0; i < ghosts.size(); i++) {
+			if (checkCollision(player.getPlayerBoundingBox(), ghosts.get(i).getOffensiveBoundingBox())) {
+				KeyProcessor.spaceKeyEnabled = true;
+				Ghost.setGhostTarget(ghosts.get(i));
+			} else {
+				KeyProcessor.spaceKeyEnabled = false;
+			}
+		}
 	}
 	
 	private static boolean checkCollision(BoundingBox box1, BoundingBox box2) {
@@ -192,5 +217,9 @@ public class Main{
 	
 	private static int nextLine(int sizeOfLine, int numOfLines) {
 		return sizeOfLine * numOfLines;	
+	}
+	
+	private static void resetFrames(int i) {
+		i = 0;
 	}
 }

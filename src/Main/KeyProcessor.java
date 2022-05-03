@@ -13,6 +13,7 @@ public class KeyProcessor{
 	public static boolean oKeyEnabled = false;
 	public static boolean qKeyEnabled = false;
 	public static boolean uKeyEnabled = false;
+	public static boolean spaceKeyEnabled = false;
 	
 	// Static Method(s)
 	public static void processKey(char key){
@@ -33,8 +34,6 @@ public class KeyProcessor{
 				changePosition(0, -(Main.player.getPlayerSpeed()));
 				changeToNextFrame();
 				Main.player.setCurrentDirection("up");
-				// Main.playerBox.setY1(Main.playerBox.getY1() - Main.speed);
-				// Main.playerBox.setY2(Main.playerBox.getY1() + Main.playerBox.getWidthAndHeight());
 			}
 			break;
 		
@@ -44,9 +43,6 @@ public class KeyProcessor{
 				changeToNextFrame();
 				Main.player.setPlayerFacingRight(false);
 				Main.player.setCurrentDirection("left");
-				// Main.isFacingRight = false;
-				// Main.playerBox.setX1(Main.playerBox.getX1() - Main.speed);
-				// Main.playerBox.setX2(Main.playerBox.getX1() + Main.playerBox.getWidthAndHeight());
 			}
 			break;
 			
@@ -55,8 +51,6 @@ public class KeyProcessor{
 				changePosition(0, Main.player.getPlayerSpeed());
 				changeToNextFrame();
 				Main.player.setCurrentDirection("down");
-				// Main.playerBox.setY1(Main.playerBox.getY1() + Main.speed);
-				// Main.playerBox.setY2(Main.playerBox.getY1() + Main.playerBox.getWidthAndHeight());
 			}
 			break;
 			
@@ -66,12 +60,13 @@ public class KeyProcessor{
 				changeToNextFrame();
 				Main.player.setPlayerFacingRight(true);
 				Main.player.setCurrentDirection("right");
-				// Main.isFacingRight = true;
 			}
 			break;
 			
 		case '$':
-			
+			if (spaceKeyEnabled) {
+				Ghost.getGhostTarget().hitAnimation();
+			}
 			break;
 			
 		case 'm':

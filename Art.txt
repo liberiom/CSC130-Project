@@ -38,3 +38,4 @@ Art/dialogTextbox.png*dialogueTextbox
 Art/slash1.png*slash1
 Art/door.png*door
 Art/ghost1.png*ghost1
+Art/key.png*key

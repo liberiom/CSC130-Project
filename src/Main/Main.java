@@ -62,13 +62,6 @@ public class Main{
 		treasure = new Treasure();
 		
 		// Ghosts
-		/*
-		 * for (int i = 0; i < NUM_OF_GHOSTS; i++) {
-			ghosts.add(new Ghost());
-			System.out.println(ghosts.get(i).getSprite().getCoords().getX()); 
-			System.out.println(ghosts.get(i).getSprite().getCoords().getY());
-		}
-		 */
 		ghost1 = new Ghost("ghost1", "slash1");
 		slashFrames1 = 0;
 		moveFrames = 0;
@@ -103,23 +96,10 @@ public class Main{
 			}
 		}
 		
-			
-		/*
-		 * for (int i = 0; i < ghosts.size(); i++) {
-			if (ghosts.get(i).getVisibility()) {
-				ctrl.addSpriteToFrontBuffer(ghosts.get(i).getSprite().getCoords().getX(), ghosts.get(i).getSprite().getCoords().getY(), ghosts.get(i).getSprite().getTag());
-			}
-			if (ghosts.get(i).hasBeenHit()) {
-				if (slashFrames < FINAL_SLASH_FRAMES) {
-					ctrl.addSpriteToFrontBuffer(ghosts.get(i).getSlashSprite().getCoords().getX(), ghosts.get(i).getSlashSprite().getCoords().getY(), ghosts.get(i).getSlashSprite().getTag());
-					slashFrames++;
-				} else {
-					resetFrames(slashFrames);
-				}
-			}
+		// Key visibility
+		if (ghost1.getKey().getVisibility() == true) {
+			ctrl.addSpriteToFrontBuffer(ghost1.getKey().getSprite().getCoords().getX(), ghost1.getKey().getSprite().getCoords().getY(), ghost1.getKey().getSprite().getTag());
 		}
-		 */
-
 		
 
 		// Door visibility
@@ -205,17 +185,6 @@ public class Main{
 			KeyProcessor.uKeyEnabled = false;
 		}
 		
-		// Ghost offensive collision
-		/*
-		 * for (int i = 0; i < ghosts.size(); i++) {
-			if (checkCollision(player.getPlayerBoundingBox(), ghosts.get(i).getOffensiveBoundingBox())) {
-				KeyProcessor.spaceKeyEnabled = true;
-				Ghost.setGhostTarget(ghosts.get(i));
-			} else {
-				KeyProcessor.spaceKeyEnabled = false;
-			}
-		}
-		 */
 		
 		// Player and Ghost offensive
 		if (checkCollision(player.getPlayerBoundingBox(), ghost1.getOffensiveBoundingBox())) {
@@ -230,10 +199,6 @@ public class Main{
 			ghostReboundPlayer(player.getPlayerBoundingBox(), ghost1.getDefensiveBoundingBox());
 		}
 		
-		// Ghost Defensive Collision
-		for (int i = 0; i < ghosts.size(); i++) {
-			// TODO: Add stuff here
-		}
 	}
 	
 	private static boolean checkCollision(BoundingBox box1, BoundingBox box2) {

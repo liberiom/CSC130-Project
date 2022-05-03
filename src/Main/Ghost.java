@@ -20,6 +20,7 @@ public class Ghost {
 	private String slashTag, tag;
 	private int speed = 10;
 	private final int EXPAND_BOUNDING_BOX = 30;
+	private Key key;
 	// private stopWatchX sw;
 	
 	// Trial and Error
@@ -48,12 +49,13 @@ public class Ghost {
 			this.defensiveBoundingBox.destroy();
 			this.offensiveBoundingBox.destroy();
 			this.isVisible = false;
-			// sprite.setCoords(-200, -200); // Maybe same coordinates as the BoundingBox disposal location? --> Actually unncessary, use an isVisible variable instead
+			key = new Key(new spriteInfo(new Vector2D(this.sprite.getCoords().getX(), this.sprite.getCoords().getY()), "key"), new BoundingBox(this.sprite.getCoords().getX() - 30, this.sprite.getCoords().getX() + 80, this.sprite.getCoords().getY() - 30, this.sprite.getCoords().getY() + 80));
+			key.setVisibility(true); // will get passed to Main() metnod, which will display the key
 		}
 	}
 	
-	public void move() {
-		int randomNum = rng.nextInt(4); // Give up some love
+	public void move() { // Ghost's AI
+		int randomNum = rng.nextInt(4); 
 		System.out.println(randomNum);
 		if (randomNum == 0 && !(this.defensiveBoundingBox.getX2() + speed > Main.boundaryBoxes.get(4).getX1())) {
 			// Move right
@@ -114,6 +116,10 @@ public class Ghost {
 	
 	public BoundingBox getOffensiveBoundingBox() {
 		return this.offensiveBoundingBox;
+	}
+	
+	public Key getKey() {
+		return this.key;
 	}
 }
 

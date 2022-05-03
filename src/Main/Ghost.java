@@ -17,7 +17,9 @@ public class Ghost {
 	private boolean isVisible = true;
 	private boolean isHit = false;
 	private static Ghost ghostTarget;
+	private String slashTag, tag;
 	private int speed = 10;
+	private final int EXPAND_BOUNDING_BOX = 30;
 	// private stopWatchX sw;
 	
 	// Trial and Error
@@ -26,9 +28,11 @@ public class Ghost {
 	
 	public Ghost(String tag, String slashTag) {
 		rng = new Random();
-		this.sprite = new spriteInfo(new Vector2D(rng.nextInt(1730 - 123) + 123, rng.nextInt(948 - 121) + 121), tag);
-		this.slashSprite = new spriteInfo(new Vector2D(sprite.getCoords().getX() - SLASH_X_GAP, sprite.getCoords().getY() - SLASH_Y_GAP), slashTag);
-		this.defensiveBoundingBox = new BoundingBox(sprite, 100, 100);
+		this.slashTag = slashTag;
+		this.tag = tag;
+		this.sprite = new spriteInfo(new Vector2D(rng.nextInt(1730 - 123) + 123, rng.nextInt(948 - 121) + 121), this.tag);
+		this.slashSprite = new spriteInfo(new Vector2D(sprite.getCoords().getX() - SLASH_X_GAP, sprite.getCoords().getY() - SLASH_Y_GAP), this.slashTag);
+		this.defensiveBoundingBox = new BoundingBox(this.sprite.getCoords().getX() - EXPAND_BOUNDING_BOX, this.sprite.getCoords().getX() + 100, this.sprite.getCoords().getY(), this.sprite.getCoords().getY() + 100);
 		this.offensiveBoundingBox = new BoundingBox(defensiveBoundingBox.getX1() - (GAP * 4), defensiveBoundingBox.getX2() + GAP, defensiveBoundingBox.getY1() - (GAP * 4), defensiveBoundingBox.getY2() + GAP); // Based off of the defensive bounding box
 	}
 	
@@ -49,13 +53,35 @@ public class Ghost {
 	}
 	
 	public void move() {
-		int randomNum = rng.nextInt(5);
-		if (randomNum == 0 && this.offensiveBoundingBox.getX2() + speed > Main.boundaryBoxes.get(4).getX1()) {
+		int randomNum = rng.nextInt(4); // Give up some love
+		System.out.println(randomNum);
+		if (randomNum == 0 && !(this.defensiveBoundingBox.getX2() + speed > Main.boundaryBoxes.get(4).getX1())) {
 			// Move right
-			this.sprite = new spriteInfo(new Vector2D(this.sprite.getCoords().getX() + speed, this.sprite.getCoords().getY()), "ghost1");
+			System.out.println("reached");
+			this.sprite.setCoords(this.sprite.getCoords().getX() + speed, this.sprite.getCoords().getY());
+			this.slashSprite = new spriteInfo(new Vector2D(sprite.getCoords().getX() - SLASH_X_GAP, sprite.getCoords().getY() - SLASH_Y_GAP), slashTag);
 			this.defensiveBoundingBox = new BoundingBox(this.defensiveBoundingBox.getX1() + speed, this.defensiveBoundingBox.getX2() + speed, this.defensiveBoundingBox.getY1(), this.defensiveBoundingBox.getY2());
 			this.offensiveBoundingBox = new BoundingBox(this.offensiveBoundingBox.getX1() + speed, this.offensiveBoundingBox.getX2() + speed, this.offensiveBoundingBox.getY1(), this.offensiveBoundingBox.getY2());
+		} else if (randomNum == 1 && !(this.defensiveBoundingBox.getX1() - speed < Main.boundaryBoxes.get(2).getX2())) {
+			// Move left
+			this.sprite.setCoords(this.sprite.getCoords().getX() - speed, this.sprite.getCoords().getY());
+			this.slashSprite = new spriteInfo(new Vector2D(sprite.getCoords().getX() - SLASH_X_GAP, sprite.getCoords().getY() - SLASH_Y_GAP), slashTag);
+			this.defensiveBoundingBox = new BoundingBox(this.defensiveBoundingBox.getX1() - speed, this.defensiveBoundingBox.getX2() - speed, this.defensiveBoundingBox.getY1(), this.defensiveBoundingBox.getY2());
+			this.offensiveBoundingBox = new BoundingBox(this.offensiveBoundingBox.getX1() - speed, this.offensiveBoundingBox.getX2() - speed, this.offensiveBoundingBox.getY1(), this.offensiveBoundingBox.getY2());
+		} else if (randomNum == 2 && (!(this.defensiveBoundingBox.getY1() - speed < Main.boundaryBoxes.get(0).getY2()) || !(this.defensiveBoundingBox.getY1() - speed < Main.boundaryBoxes.get(1).getY2() || !(this.defensiveBoundingBox.getY1() - speed < Main.door.getBoundingBox().getY2())))) {
+			// Move up
+			this.sprite.setCoords(this.sprite.getCoords().getX(), this.sprite.getCoords().getY() - speed);
+			this.slashSprite = new spriteInfo(new Vector2D(sprite.getCoords().getX() - SLASH_X_GAP, sprite.getCoords().getY() - SLASH_Y_GAP), slashTag);
+			this.defensiveBoundingBox = new BoundingBox(this.defensiveBoundingBox.getX1(), this.defensiveBoundingBox.getX2(), this.defensiveBoundingBox.getY1() - speed, this.defensiveBoundingBox.getY2() - speed);
+			this.offensiveBoundingBox = new BoundingBox(this.offensiveBoundingBox.getX1(), this.offensiveBoundingBox.getX2(), this.offensiveBoundingBox.getY1() - speed, this.offensiveBoundingBox.getY2() - speed);
+		} else if (randomNum == 3 && !(this.defensiveBoundingBox.getY2() + speed > Main.boundaryBoxes.get(3).getY1())) {
+			// Move down
+			this.sprite.setCoords(this.sprite.getCoords().getX(), this.sprite.getCoords().getY() + speed);
+			this.slashSprite = new spriteInfo(new Vector2D(sprite.getCoords().getX() - SLASH_X_GAP, sprite.getCoords().getY() - SLASH_Y_GAP), slashTag);
+			this.defensiveBoundingBox = new BoundingBox(this.defensiveBoundingBox.getX1(), this.defensiveBoundingBox.getX2(), this.defensiveBoundingBox.getY1() + speed, this.defensiveBoundingBox.getY2() + speed);
+			this.offensiveBoundingBox = new BoundingBox(this.offensiveBoundingBox.getX1(), this.offensiveBoundingBox.getX2(), this.offensiveBoundingBox.getY1() + speed, this.offensiveBoundingBox.getY2() + speed);
 		}
+	
 	}
 	
 	public boolean getVisibility() {

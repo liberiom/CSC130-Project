@@ -29,11 +29,12 @@ public class Main{
 	public static boolean isDoorLockedDialogue = false;
 	public static boolean isChestOpenedDialogue = false;
 	public static boolean isKeyDialog = false;
+	private static Random rng = new Random();
 	private static int thinning = 20;
 	private static ArrayList<Ghost> ghosts = new ArrayList<Ghost>();
 	private static int slashFrames1;
 	private static int moveFrames;
-	private static final int FINAL_SLASH_FRAMES = 120;
+	private static final int FINAL_SLASH_FRAMES = 60;
 	private static Ghost ghost1, ghost2, ghost3;
 	// End Static fields...
 	public static void main(String[] args) {
@@ -83,19 +84,14 @@ public class Main{
 	public static void update(Control ctrl) {
 		ctrl.addSpriteToFrontBuffer(0, 0, "background");
 		// Debugging sysouts go here
-		// System.out.println(player.getPlayerBoundingBox().getX1() + " " + player.getPlayerBoundingBox().getY1());
-		
-		/*
-		 * TODO: MOVE THE IF STATEMENTS BELOW FOR THE GHOSTS OUT OF THEIR BOX. I HAVE ALREADY MADE A DEEP COPY
-		 */
+		// System.out.println(player.getPlayerBoundingBox().getX1() + " " + player.getPlayerBoundingBox().getY1());	
 		
 		if (ghost1.getVisibility()) {
-			moveFrames++;
 			ctrl.addSpriteToFrontBuffer(ghost1.getSprite().getCoords().getX(), ghost1.getSprite().getCoords().getY(), ghost1.getSprite().getTag());
 			if (moveFrames < 20) {
-				ghost1.move();
+				moveFrames++;
 			} else {
-				resetFrames(moveFrames);
+				ghost1.move();
 			}
 		}
 		if (ghost1.hasBeenHit()) {
@@ -165,7 +161,7 @@ public class Main{
 				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 1), "You found a sword", white);
 			} else if (isDoorLockedDialogue) {
 				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 1), "Hmm... this door seems to be locked. There must be a key somewhere...", white);
-				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 1), "somewhere...", white);
+				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 2), "somewhere...", white);
 				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 10), "Press Q to quit", white);
 			} else if (isKeyDialog) {
 				
@@ -220,12 +216,19 @@ public class Main{
 			}
 		}
 		 */
+		
+		// Player and Ghost offensive
 		if (checkCollision(player.getPlayerBoundingBox(), ghost1.getOffensiveBoundingBox())) {
 			KeyProcessor.spaceKeyEnabled = true;
 			Ghost.setGhostTarget(ghost1);
 		} else {
 			KeyProcessor.spaceKeyEnabled = false;
 		}	
+		
+		// Player and Ghost defensive
+		if (checkCollision(player.getPlayerBoundingBox(), ghost1.getDefensiveBoundingBox())) {
+			ghostReboundPlayer(player.getPlayerBoundingBox(), ghost1.getDefensiveBoundingBox());
+		}
 		
 		// Ghost Defensive Collision
 		for (int i = 0; i < ghosts.size(); i++) {
@@ -258,6 +261,10 @@ public class Main{
 		} else if (player.getCurrentDirection().equals("right")) { // Right Collision
 			player.getPlayerSprite().setCoords(box2.getX1() - box1.getWidth() - PADDING, currentY);
 		}
+	}
+	
+	private static void ghostReboundPlayer(BoundingBox box1, BoundingBox box2) {
+		player.getPlayerSprite().setCoords(rng.nextInt(1665 - 177) + 177, rng.nextInt(600 - 121) + 121);
 	}
 	
 	public static void turnOffDialog() {

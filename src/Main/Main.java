@@ -29,7 +29,7 @@ public class Main{
 	public static boolean isDoorLockedDialogue = false;
 	public static boolean isChestOpenedDialogue = false;
 	public static boolean isKeyDialog = false;
-	private static int thinning = 30;
+	private static int thinning = 20;
 	
 	// End Static fields...
 	public static void main(String[] args) {
@@ -171,7 +171,7 @@ public class Main{
 		} else if (box1.getY2() > box2.getY1() && box1.getX1() < box2.getX2() && box1.getX2() > box2.getX1() && box1.getY1() < box2.getY1()) { // Bottom Collision
 			player.getPlayerSprite().setCoords(currentX, box2.getY1() - box1.getHeight() - PADDING);
 		} else if (box1.getX1() < box2.getX2() && box1.getY1() < box2.getY2() && box1.getY2() > box2.getY1() && box1.getX2() > box2.getX2()) { // Left collision
-			player.getPlayerSprite().setCoords(box2.getX2() + PADDING, currentY);
+			player.getPlayerSprite().setCoords(box2.getX2() + PADDING - thinning, currentY);
 		} else if (box1.getX2() > box2.getX1() && box1.getY1() < box2.getY2() && box1.getY2() > box2.getY1() && box1.getX1() < box2.getX1()) { // Right Collision
 			player.getPlayerSprite().setCoords(box2.getX1() - box1.getWidth() - PADDING, currentY);
 		}

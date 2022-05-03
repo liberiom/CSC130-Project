@@ -29,6 +29,7 @@ public class Main{
 	public static boolean isDoorLockedDialogue = false;
 	public static boolean isChestOpenedDialogue = false;
 	public static boolean isKeyDialog = false;
+	private static int thinning = 50;
 	
 	// End Static fields...
 	public static void main(String[] args) {
@@ -117,7 +118,6 @@ public class Main{
 		}
 		
 		// Updating the player's BoundingBox
-		int thinning = 10;
 		player.getPlayerBoundingBox().setX1(player.getPlayerSprite().getCoords().getX() + thinning);
 		player.getPlayerBoundingBox().setX2(player.getPlayerBoundingBox().getX1() + player.getPlayerBoundingBox().getWidth() - thinning);
 		player.getPlayerBoundingBox().setY1(player.getPlayerSprite().getCoords().getY());
@@ -163,7 +163,7 @@ public class Main{
 	}
 	
 	private static void reboundPlayer(BoundingBox box1, BoundingBox box2) {	
-		final int PADDING = 1; // Padding insures that there is not an infinite collision
+		final int PADDING = 1; // Padding ensures that there is not an infinite collision
 		int currentX = player.getPlayerSprite().getCoords().getX();
 		int currentY = player.getPlayerSprite().getCoords().getY();	
 		if (box1.getY1() < box2.getY2() && box1.getX1() < box2.getX2() && box1.getX2() > box2.getX1() && box1.getY2() > box2.getY2()) { // Top collision

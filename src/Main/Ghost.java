@@ -13,7 +13,7 @@ public class Ghost {
 	private spriteInfo slashSprite;
 	private BoundingBox defensiveBoundingBox; // The box for hitting the user
 	private BoundingBox offensiveBoundingBox; // The box for getting hit by the user
-	private final int GAP = 20;
+	private final int GAP = 100;
 	private boolean isVisible = true;
 	private boolean isHit = false;
 	private static Ghost ghostTarget;

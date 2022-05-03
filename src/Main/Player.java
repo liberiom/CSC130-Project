@@ -25,6 +25,7 @@ public class Player {
 	public Player() {
 		playerSprite = new spriteInfo(startPosition, "frame1");
 		playerBox = new BoundingBox(playerSprite, 30, 100);
+		playerBox.setX1(playerBox.getX1() + 20); // This is to make the boundingbox thinner for the player
 		setFrames();
 	}
 	

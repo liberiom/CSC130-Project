@@ -24,7 +24,7 @@ public class Main{
 	public static ArrayList<BoundingBox> boundaryBoxes = new ArrayList<BoundingBox>();
 	private static spriteInfo dialogTextbox;	
 	public static boolean tempHideString = false;
-	public static boolean isDialogBoxShowing;
+	public static boolean isDialogBoxShowing = false;
 	public static boolean isDoorUnlockedDialogue = false;
 	public static boolean isDoorLockedDialogue = false;
 	public static boolean isChestOpenedDialogue = false;
@@ -39,7 +39,6 @@ public class Main{
 	
 	/* This is your access to things BEFORE the game loop starts */
 	public static void start(){
-		
 				
 		// Player Sprite
 		player = new Player();	
@@ -106,15 +105,13 @@ public class Main{
 				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 2), "enemies to kill them.", white);
 				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 10), "Press Q to exit", white);
 			} else if (isDoorUnlockedDialogue) {
-				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 1), "You found a sword! Use the sword by pressing the Spacebar near ", white);
+				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 1), "You found a sword", white);
 			} else if (isDoorLockedDialogue) {
 				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 1), "Hmm... this door seems to be locked. There must be a key somewhere...", white);
 			} else if (isKeyDialog) {
 				
-			} else {
-				
 			}
-			KeyProcessor.isPaused = true;
+			// KeyProcessor.isPaused = true;
 		}
 		
 		// Updating the player's BoundingBox
@@ -133,16 +130,25 @@ public class Main{
 		
 		// Checking the player's collision against chests
 		if (checkCollision(player.getPlayerBoundingBox(), treasure.getBoundingBox())) {
-			isChestOpenedDialogue = true;
-			KeyProcessor.oKeyEnabled = true;
 			if (!tempHideString) {
 				ctrl.drawString(treasure.getSprite().getCoords().getX() - 50, treasure.getSprite().getCoords().getY() + 70, "Press O to open the chest", white);
 			}
+			KeyProcessor.oKeyEnabled = true;
+		} else {
+			KeyProcessor.oKeyEnabled = false;
 		}
 		
 		// Checking the player's collision against the door and rebound player
 		if (checkCollision(player.getPlayerBoundingBox(), door.getBoundingBox())) {
 			reboundPlayer(player.getPlayerBoundingBox(), door.getBoundingBox());
+		}
+		
+		// Door dialogue
+		if (checkCollision(player.getPlayerBoundingBox(), door.getDialogueBoundingBox())) {
+			ctrl.drawString(door.getSprite().getCoords().getX(), door.getBoundingBox().getY2(), "Press u to open door", white);
+			KeyProcessor.uKeyEnabled = true;
+		} else {
+			KeyProcessor.uKeyEnabled = false;
 		}
 		
 		// Slashing

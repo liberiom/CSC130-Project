@@ -12,6 +12,7 @@ public class KeyProcessor{
 	public static boolean isPaused = false;
 	public static boolean oKeyEnabled = false;
 	public static boolean qKeyEnabled = false;
+	public static boolean uKeyEnabled = false;
 	
 	// Static Method(s)
 	public static void processKey(char key){
@@ -79,28 +80,36 @@ public class KeyProcessor{
 			break;
 			
 		case 'o':
-			System.out.println("O has been pressed");
 			if (oKeyEnabled) {
-				Main.tempHideString = true; // Temporarily hides the String in case it overlays the dialog box
+				Main.player.setPlayerHaveSword(true);
+				Main.treasure.destroyBoundingBox();
+				Main.treasure.setTreasureVisibility(false);
+				isPaused = true;
 				Main.isDialogBoxShowing = true;
-				qKeyEnabled = true; // I put this here so that people can't just skip the order of flow by just pressing the Q key before pressing the O key
+				Main.isChestOpenedDialogue = true;
+				// Pass User input to q
+				qKeyEnabled = true;
+				oKeyEnabled = false;
+			}
+			break;
+			
+		case 'u':
+			if (uKeyEnabled) {
+				isPaused = true;
+				Main.isDialogBoxShowing = true;
+				Main.isDoorLockedDialogue = true;
+				// Pass to q
+				qKeyEnabled = true;
+				uKeyEnabled = false;
 			}
 			break;
 			
 		case 'q':
-			System.out.println("Q has been pressed");
 			if (qKeyEnabled) {
-				Main.tempHideString = false; // Puts that String back after the dialog box is finished showing
-				isPaused = false;
 				Main.isDialogBoxShowing = false;
-				Main.player.setPlayerHaveSword(true);
-				oKeyEnabled = false;
-				qKeyEnabled = false;
-				if (Main.isChestOpenedDialogue) {
-					Main.treasure.setTreasureVisibility(false);
-					Main.treasure.destroyBoundingBox();
-				}
 				Main.turnOffDialog();
+				// Pass the input to the user
+				isPaused = false;
 			}
 			break;
 		}

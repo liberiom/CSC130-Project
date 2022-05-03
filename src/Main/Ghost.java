@@ -24,6 +24,7 @@ public class Ghost {
 	private final int SLASH_Y_GAP = 50;
 	
 	public Ghost() {
+		rng = new Random();
 		this.sprite = new spriteInfo(new Vector2D(rng.nextInt(1730 - 123) + 123, rng.nextInt(948 - 121) + 121), "ghost");
 		this.slashSprite = new spriteInfo(new Vector2D(sprite.getCoords().getX() - SLASH_X_GAP, sprite.getCoords().getY() - SLASH_Y_GAP), "slash");
 		this.defensiveBoundingBox = new BoundingBox(sprite, 100, 100);

@@ -31,7 +31,7 @@ public class Main{
 	public static boolean isKeyDialog = false;
 	private static int thinning = 20;
 	private static ArrayList<Ghost> ghosts = new ArrayList<Ghost>();
-	private static int slashFrames;
+	private static int slashFrames1, slashFrames2, slashFrames3;
 	private static final int FINAL_SLASH_FRAMES = 120;
 	private static final int NUM_OF_GHOSTS = 3;
 	private static Ghost ghost1, ghost2, ghost3;
@@ -68,11 +68,12 @@ public class Main{
 			System.out.println(ghosts.get(i).getSprite().getCoords().getY());
 		}
 		 */
-		ghost1 = new Ghost();
-		ghost2 = new Ghost();
-		ghost3 = new Ghost();
-		
-		
+		ghost1 = new Ghost("ghost1", "slash1");
+		ghost2 = new Ghost("ghost2", "slash2");
+		ghost3 = new Ghost("ghost3", "slash3");
+		slashFrames1 = 0;
+		slashFrames2 = 0;
+		slashFrames3 = 0;
 		
 		// Creating the background
 		spriteInfo background = new spriteInfo(new Vector2D(0, 0), "background");
@@ -86,6 +87,34 @@ public class Main{
 		ctrl.addSpriteToFrontBuffer(0, 0, "background");
 		// Debugging sysouts go here
 		// System.out.println(player.getPlayerBoundingBox().getX1() + " " + player.getPlayerBoundingBox().getY1());
+		
+		/*
+		 * TODO: MOVE THE IF STATEMENTS BELOW FOR THE GHOSTS OUT OF THEIR BOX. I HAVE ALREADY MADE A DEEP COPY
+		 */
+		
+		if (ghost1.getVisibility()) {
+			ctrl.addSpriteToFrontBuffer(ghost1.getSprite().getCoords().getX(), ghost1.getSprite().getCoords().getY(), ghost1.getSprite().getTag());
+		}
+		if (ghost1.hasBeenHit()) {
+			if (slashFrames1 < FINAL_SLASH_FRAMES) {
+				ctrl.addSpriteToFrontBuffer(ghost1.getSlashSprite().getCoords().getX(), ghost1.getSlashSprite().getCoords().getY(), ghost1.getSlashSprite().getTag());
+				slashFrames1++;
+			} else {
+				resetFrames(slashFrames1);
+			}
+		}
+		
+		if (ghost2.getVisibility()) {
+			ctrl.addSpriteToFrontBuffer(ghost2.getSprite().getCoords().getX(), ghost2.getSprite().getCoords().getY(), ghost2.getSprite().getTag());
+		}
+		if (ghost2.hasBeenHit()) {
+			if (slashFrames2 < FINAL_SLASH_FRAMES) {
+				ctrl.addSpriteToFrontBuffer(ghost2.getSlashSprite().getCoords().getX(), ghost2.getSlashSprite().getCoords().getY(), ghost2.getSlashSprite().getTag());
+				slashFrames2++;
+			} else {
+				resetFrames(slashFrames2);
+			}
+		}
 			
 		/*
 		 * for (int i = 0; i < ghosts.size(); i++) {

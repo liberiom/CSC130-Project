@@ -23,10 +23,10 @@ public class Ghost {
 	private final int SLASH_X_GAP = 50; 
 	private final int SLASH_Y_GAP = 50;
 	
-	public Ghost() {
+	public Ghost(String tag, String slashTag) {
 		rng = new Random();
-		this.sprite = new spriteInfo(new Vector2D(rng.nextInt(1730 - 123) + 123, rng.nextInt(948 - 121) + 121), "ghost");
-		this.slashSprite = new spriteInfo(new Vector2D(sprite.getCoords().getX() - SLASH_X_GAP, sprite.getCoords().getY() - SLASH_Y_GAP), "slash");
+		this.sprite = new spriteInfo(new Vector2D(rng.nextInt(1730 - 123) + 123, rng.nextInt(948 - 121) + 121), tag);
+		this.slashSprite = new spriteInfo(new Vector2D(sprite.getCoords().getX() - SLASH_X_GAP, sprite.getCoords().getY() - SLASH_Y_GAP), slashTag);
 		this.defensiveBoundingBox = new BoundingBox(sprite, 100, 100);
 		this.offensiveBoundingBox = new BoundingBox(defensiveBoundingBox.getX1() - (GAP * 4), defensiveBoundingBox.getX2() + GAP, defensiveBoundingBox.getY1() - (GAP * 4), defensiveBoundingBox.getY2() + GAP); // Based off of the defensive bounding box
 	}

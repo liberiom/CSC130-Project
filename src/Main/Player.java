@@ -21,11 +21,13 @@ public class Player {
 	private spriteInfo playerSprite;
 	private BoundingBox playerBox;	
 	private boolean isSlashing;
+	private String currentDirection;
 	
 	public Player() {
 		playerSprite = new spriteInfo(startPosition, "frame1");
 		playerBox = new BoundingBox(playerSprite, 30, 100);
 		playerBox.setX1(playerBox.getX1() + 20); // This is to make the boundingbox thinner for the player
+		currentDirection = "right";
 		setFrames();
 	}
 	
@@ -81,6 +83,14 @@ public class Player {
 	
 	public void setPlayerHaveSword(boolean bool) {
 		this.hasSword = bool;
+	}
+	
+	public String getCurrentDirection() {
+		return this.currentDirection;
+	}
+	
+	public void setCurrentDirection(String s) {
+		this.currentDirection = s;
 	}
 	
 }

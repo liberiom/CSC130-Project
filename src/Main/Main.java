@@ -166,13 +166,13 @@ public class Main{
 		final int PADDING = 1; // Padding ensures that there is not an infinite collision
 		int currentX = player.getPlayerSprite().getCoords().getX();
 		int currentY = player.getPlayerSprite().getCoords().getY();	
-		if (box1.getY1() < box2.getY2() && box1.getX1() < box2.getX2() && box1.getX2() > box2.getX1() && box1.getY2() > box2.getY2()) { // Top collision
+		if (player.getCurrentDirection().equals("up")) { // Top collision
 			player.getPlayerSprite().setCoords(currentX, box2.getY2() + PADDING);
-		} else if (box1.getY2() > box2.getY1() && box1.getX1() < box2.getX2() && box1.getX2() > box2.getX1() && box1.getY1() < box2.getY1()) { // Bottom Collision
+		} else if (player.getCurrentDirection().equals("down")) { // Bottom Collision
 			player.getPlayerSprite().setCoords(currentX, box2.getY1() - box1.getHeight() - PADDING);
-		} else if (box1.getX1() < box2.getX2() && box1.getY1() < box2.getY2() && box1.getY2() > box2.getY1() && box1.getX2() > box2.getX2()) { // Left collision
+		} else if (player.getCurrentDirection().equals("left")) { // Left collision
 			player.getPlayerSprite().setCoords(box2.getX2() + PADDING - thinning, currentY);
-		} else if (box1.getX2() > box2.getX1() && box1.getY1() < box2.getY2() && box1.getY2() > box2.getY1() && box1.getX1() < box2.getX1()) { // Right Collision
+		} else if (player.getCurrentDirection().equals("right")) { // Right Collision
 			player.getPlayerSprite().setCoords(box2.getX1() - box1.getWidth() - PADDING, currentY);
 		}
 	}

@@ -14,7 +14,7 @@ public class Door {
 		this.xCoord = 1580;
 		this.yCoord = 73;
 		this.sprite = new spriteInfo(new Vector2D(xCoord, yCoord), "door");
-		this.boundingBox = new BoundingBox(1539, 1728, 0, 125);
+		this.boundingBox = new BoundingBox(1537, 1732, 0, 125);
 		this.isLocked = true; // Start with a locked door
 	}
 	

@@ -31,6 +31,7 @@ public class KeyProcessor{
 			if (!isPaused) {
 				changePosition(0, -(Main.player.getPlayerSpeed()));
 				changeToNextFrame();
+				Main.player.setCurrentDirection("up");
 				// Main.playerBox.setY1(Main.playerBox.getY1() - Main.speed);
 				// Main.playerBox.setY2(Main.playerBox.getY1() + Main.playerBox.getWidthAndHeight());
 			}
@@ -41,6 +42,7 @@ public class KeyProcessor{
 				changePosition(-(Main.player.getPlayerSpeed()), 0);
 				changeToNextFrame();
 				Main.player.setPlayerFacingRight(false);
+				Main.player.setCurrentDirection("left");
 				// Main.isFacingRight = false;
 				// Main.playerBox.setX1(Main.playerBox.getX1() - Main.speed);
 				// Main.playerBox.setX2(Main.playerBox.getX1() + Main.playerBox.getWidthAndHeight());
@@ -51,6 +53,7 @@ public class KeyProcessor{
 			if (!isPaused) {
 				changePosition(0, Main.player.getPlayerSpeed());
 				changeToNextFrame();
+				Main.player.setCurrentDirection("down");
 				// Main.playerBox.setY1(Main.playerBox.getY1() + Main.speed);
 				// Main.playerBox.setY2(Main.playerBox.getY1() + Main.playerBox.getWidthAndHeight());
 			}
@@ -61,6 +64,7 @@ public class KeyProcessor{
 				changePosition(Main.player.getPlayerSpeed(), 0);
 				changeToNextFrame();
 				Main.player.setPlayerFacingRight(true);
+				Main.player.setCurrentDirection("right");
 				// Main.isFacingRight = true;
 			}
 			break;

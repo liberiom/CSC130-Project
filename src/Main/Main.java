@@ -69,11 +69,7 @@ public class Main{
 		}
 		 */
 		ghost1 = new Ghost("ghost1", "slash1");
-		ghost2 = new Ghost("ghost2", "slash2");
-		ghost3 = new Ghost("ghost3", "slash3");
 		slashFrames1 = 0;
-		slashFrames2 = 0;
-		slashFrames3 = 0;
 		
 		// Creating the background
 		spriteInfo background = new spriteInfo(new Vector2D(0, 0), "background");
@@ -104,17 +100,6 @@ public class Main{
 			}
 		}
 		
-		if (ghost2.getVisibility()) {
-			ctrl.addSpriteToFrontBuffer(ghost2.getSprite().getCoords().getX(), ghost2.getSprite().getCoords().getY(), ghost2.getSprite().getTag());
-		}
-		if (ghost2.hasBeenHit()) {
-			if (slashFrames2 < FINAL_SLASH_FRAMES) {
-				ctrl.addSpriteToFrontBuffer(ghost2.getSlashSprite().getCoords().getX(), ghost2.getSlashSprite().getCoords().getY(), ghost2.getSlashSprite().getTag());
-				slashFrames2++;
-			} else {
-				resetFrames(slashFrames2);
-			}
-		}
 			
 		/*
 		 * for (int i = 0; i < ghosts.size(); i++) {
@@ -233,14 +218,7 @@ public class Main{
 			Ghost.setGhostTarget(ghost1);
 		} else {
 			KeyProcessor.spaceKeyEnabled = false;
-		}
-		
-		if (checkCollision(player.getPlayerBoundingBox(), ghost2.getOffensiveBoundingBox())) {
-			KeyProcessor.spaceKeyEnabled = true;
-			Ghost.setGhostTarget(ghost2);
-		} else {
-			KeyProcessor.spaceKeyEnabled = false;
-		}
+		}	
 		
 		// Ghost Defensive Collision
 		for (int i = 0; i < ghosts.size(); i++) {

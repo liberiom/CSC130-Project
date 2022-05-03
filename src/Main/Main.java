@@ -66,7 +66,6 @@ public class Main{
 	/* This is your access to the "game loop" (It is a "callback" method from the Control class (do NOT modify that class!))*/
 	public static void update(Control ctrl) {
 		ctrl.addSpriteToFrontBuffer(0, 0, "background");
-		
 		// Debugging sysouts go here
 		System.out.println(player.getPlayerBoundingBox().getX1() + " " + player.getPlayerBoundingBox().getY1());
 

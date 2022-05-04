@@ -120,7 +120,7 @@ public class Main{
 				moveFrames++;
 			} else {
 				ghost1.move();
-				resetFrames(moveFrames);
+				moveFrames = 0;
 			}
 		}
 		if (ghost1.hasBeenHit()) {

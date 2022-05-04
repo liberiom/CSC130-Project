@@ -81,13 +81,13 @@ public class Main{
 		
 		// Display Objective
 		if (displayObjective) {
-			ctrl.drawString(54, 28, "Objective: Unlock the door to beat the level. Watch out for the fast-moving ghost, though! It has a habit of throwing people around!", white);
+			ctrl.drawString(54, 48, "Objective: Unlock the door to beat the level. Watch out for the fast-moving ghost, though! It has a habit of throwing people around!", white);
 		}
 		
 		// Ghost-related stuff
 		if (ghost1.getVisibility()) {
 			ctrl.addSpriteToFrontBuffer(ghost1.getSprite().getCoords().getX(), ghost1.getSprite().getCoords().getY(), ghost1.getSprite().getTag());
-			if (moveFrames < 60) {
+			if (moveFrames < 120) {
 				moveFrames++;
 			} else {
 				ghost1.move();

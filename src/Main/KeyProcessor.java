@@ -89,7 +89,6 @@ public class KeyProcessor{
 				}
 				if (Main.door.isDoorLocked()) {
 					isPaused = true;
-					Main.displayObjective = false; 
 					Main.isDialogBoxShowing = true;
 					Main.isDoorLockedDialogue = true;
 					// Pass to q
@@ -97,6 +96,7 @@ public class KeyProcessor{
 					uKeyEnabled = false;
 				} else {
 					isPaused = true;
+					Main.displayObjective = false; // The "Press u to open door" prompt is automatically gone because the boundingBox disappeared 
 					Main.isDialogBoxShowing = true;
 					Main.isDoorUnlockedDialogue = true;
 					// No need to pass to Q here, the game is finished. The player would be guided to press the Esc key

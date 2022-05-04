@@ -57,10 +57,8 @@ public class Ghost {
 	
 	public void move() { // Ghost's AI
 		int randomNum = rng.nextInt(4); 
-		System.out.println(randomNum);
 		if (randomNum == 0 && !(this.defensiveBoundingBox.getX2() + speed > Main.boundaryBoxes.get(4).getX1())) {
 			// Move right
-			System.out.println("reached");
 			this.sprite.setCoords(this.sprite.getCoords().getX() + speed, this.sprite.getCoords().getY());
 			this.slashSprite = new spriteInfo(new Vector2D(sprite.getCoords().getX() - SLASH_X_GAP, sprite.getCoords().getY() - SLASH_Y_GAP), slashTag);
 			this.defensiveBoundingBox = new BoundingBox(this.defensiveBoundingBox.getX1() + speed, this.defensiveBoundingBox.getX2() + speed, this.defensiveBoundingBox.getY1(), this.defensiveBoundingBox.getY2());

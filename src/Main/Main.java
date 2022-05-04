@@ -22,6 +22,10 @@
  * - Use at least one of the following Java Collections: ArrayList, Stack, or Queue for image data 			-> Yes, in the Player class, there are four Queues that hold the image data that change when the player moves
  * - Create a custom data type for the bounding box collision object (single bounding box with behavior) 	-> Yes, see BoundingBox,java
  * - Have a container that holds a collection of bounding boxes neatly 										-> Yes, below has the boundaryBoxes ArrayList that holds bounding boxes
+ * 
+ * Player customization:
+ * - To change the speed of the Ghost, change the GHOST_FRAMES int in the Main class
+ * - To change the speed of the player, change the speed int located in the Player class
  */
 
 
@@ -63,6 +67,7 @@ public class Main{
 	private static int slashFrames1;
 	private static int moveFrames;
 	private static final int FINAL_SLASH_FRAMES = 30;
+	private static final int GHOST_FRAMES = 5;
 	public static Ghost ghost1;
 	public static boolean displayObjective = true;
 	// End Static fields...
@@ -116,11 +121,11 @@ public class Main{
 		if (ghost1.getVisibility()) {
 			ctrl.addSpriteToFrontBuffer(ghost1.getSprite().getCoords().getX(), ghost1.getSprite().getCoords().getY(), ghost1.getSprite().getTag());
 			System.out.println(moveFrames); // Debugging frames, don't mind this
-			if (moveFrames < 120) {
+			if (moveFrames < GHOST_FRAMES) {
 				moveFrames++;
 			} else {
 				ghost1.move();
-				moveFrames = 0;
+				moveFrames = 0; // For some reason
 			}
 		}
 		if (ghost1.hasBeenHit()) {

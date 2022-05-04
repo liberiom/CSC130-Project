@@ -14,6 +14,7 @@ public class KeyProcessor{
 	public static boolean qKeyEnabled = false;
 	public static boolean uKeyEnabled = false;
 	public static boolean spaceKeyEnabled = false;
+	public static boolean kKeyEnabled = false;
 	
 	// Static Method(s)
 	public static void processKey(char key){
@@ -96,6 +97,20 @@ public class KeyProcessor{
 				// Pass to q
 				qKeyEnabled = true;
 				uKeyEnabled = false;
+			}
+			break;
+			
+		case 'k':
+			if (kKeyEnabled) {
+				Main.player.setPlayerKeyStatus(true);
+				Main.ghost1.getKey().destroyBoundingBox();
+				Main.ghost1.getKey().setVisibility(false);
+				isPaused = true;
+				Main.isDialogBoxShowing = true;
+				Main.isKeyDialog = true;
+				// Pass UI to Q
+				qKeyEnabled = true;
+				kKeyEnabled = false;
 			}
 			break;
 			

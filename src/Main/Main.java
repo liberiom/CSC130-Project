@@ -35,7 +35,8 @@ public class Main{
 	private static int slashFrames1;
 	private static int moveFrames;
 	private static final int FINAL_SLASH_FRAMES = 60;
-	private static Ghost ghost1, ghost2, ghost3;
+	public static Ghost ghost1;
+	
 	// End Static fields...
 	public static void main(String[] args) {
 		Control ctrl = new Control();				// Do NOT remove!
@@ -170,6 +171,15 @@ public class Main{
 			KeyProcessor.oKeyEnabled = true;
 		} else {
 			KeyProcessor.oKeyEnabled = false;
+		}
+		
+		if (checkCollision(player.getPlayerBoundingBox(), ghost1.getKey().getBoundingBox())) {
+			if (!tempHideString) {
+				ctrl.drawString(ghost1.getKey().getSprite().getCoords().getX() - 50,  ghost1.getKey().getSprite().getCoords().getY() + 70,  "Press K to grab the key", white);
+			}
+			KeyProcessor.kKeyEnabled = true;
+		} else {
+			KeyProcessor.kKeyEnabled = false;
 		}
 		
 		// Checking the player's collision against the door and rebound player

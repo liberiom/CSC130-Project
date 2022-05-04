@@ -22,6 +22,7 @@ public class Player {
 	private BoundingBox playerBox;	
 	private boolean isSlashing;
 	private String currentDirection;
+	private boolean hasKey = false;
 	
 	public Player() {
 		playerSprite = new spriteInfo(startPosition, "frame1");
@@ -93,5 +94,12 @@ public class Player {
 		this.currentDirection = s;
 	}
 	
+	public boolean doesPlayerHaveKey() {
+		return this.hasKey;
+	}
+	
+	public void setPlayerKeyStatus(boolean bool) {
+		this.hasKey = bool;
+	}
 }
 

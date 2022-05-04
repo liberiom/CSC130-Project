@@ -28,4 +28,12 @@ public class Key {
 	public spriteInfo getSprite() {
 		return this.sprite;
 	}
+	
+	public BoundingBox getBoundingBox() {
+		return this.boundingBox;
+	}
+	
+	public void destroyBoundingBox() {
+		this.boundingBox.destroy();
+	}
 }

@@ -36,7 +36,7 @@ public class Main{
 	private static int moveFrames;
 	private static final int FINAL_SLASH_FRAMES = 60;
 	public static Ghost ghost1;
-	
+	// Add comment here
 	// End Static fields...
 	public static void main(String[] args) {
 		Control ctrl = new Control();				// Do NOT remove!

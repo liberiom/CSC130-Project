@@ -87,7 +87,7 @@ public class Main{
 		// Ghost-related stuff
 		if (ghost1.getVisibility()) {
 			ctrl.addSpriteToFrontBuffer(ghost1.getSprite().getCoords().getX(), ghost1.getSprite().getCoords().getY(), ghost1.getSprite().getTag());
-			if (moveFrames < 20) {
+			if (moveFrames < 60) {
 				moveFrames++;
 			} else {
 				ghost1.move();

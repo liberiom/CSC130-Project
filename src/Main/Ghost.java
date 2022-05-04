@@ -35,7 +35,7 @@ public class Ghost {
 		this.sprite = new spriteInfo(new Vector2D(rng.nextInt(1730 - 123) + 123, rng.nextInt(948 - 121) + 121), this.tag);
 		this.slashSprite = new spriteInfo(new Vector2D(sprite.getCoords().getX() - SLASH_X_GAP, sprite.getCoords().getY() - SLASH_Y_GAP), this.slashTag);
 		this.defensiveBoundingBox = new BoundingBox(this.sprite.getCoords().getX() - EXPAND_BOUNDING_BOX, this.sprite.getCoords().getX() + 100, this.sprite.getCoords().getY(), this.sprite.getCoords().getY() + 100);
-		this.offensiveBoundingBox = new BoundingBox(defensiveBoundingBox.getX1() - (GAP * 4), defensiveBoundingBox.getX2() + GAP, defensiveBoundingBox.getY1() - (GAP * 4), defensiveBoundingBox.getY2() + GAP); // Based off of the defensive bounding box
+		this.offensiveBoundingBox = new BoundingBox(defensiveBoundingBox.getX1() - (GAP * 4), defensiveBoundingBox.getX2() + (GAP * 4), defensiveBoundingBox.getY1() - (GAP * 4), defensiveBoundingBox.getY2() + (GAP * 4)); // Based off of the defensive bounding box
 	}
 	
 	

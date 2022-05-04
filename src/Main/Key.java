@@ -15,7 +15,7 @@ public class Key {
 	}
 	
 	// Other constructor to avoid NullPointerExceptions
-	public Key() {}
+	// public Key() {} -> not necessary, just use the other constructor with -100 data for x and y coordinates
 	
 	public boolean getVisibility() {
 		return this.isVisible;

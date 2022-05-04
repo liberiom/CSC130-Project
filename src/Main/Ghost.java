@@ -28,7 +28,7 @@ public class Ghost {
 	private final int SLASH_Y_GAP = 50;
 	
 	public Ghost(String tag, String slashTag) {
-		key = new Key();
+		key = new Key(new spriteInfo(new Vector2D(-100, -100), "key"), new BoundingBox(-100, -100, -100, -100));
 		rng = new Random();
 		this.slashTag = slashTag;
 		this.tag = tag;

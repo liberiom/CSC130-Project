@@ -35,6 +35,7 @@ public class Main{
 	private static int moveFrames;
 	private static final int FINAL_SLASH_FRAMES = 30;
 	public static Ghost ghost1;
+	public static boolean displayObjective = true;
 	
 	// Add comment here
 	// End Static fields...
@@ -77,6 +78,11 @@ public class Main{
 	/* This is your access to the "game loop" (It is a "callback" method from the Control class (do NOT modify that class!))*/
 	public static void update(Control ctrl) {
 		ctrl.addSpriteToFrontBuffer(0, 0, "background");
+		
+		// Display Objective
+		if (displayObjective) {
+			ctrl.drawString(moveFrames, FINAL_SLASH_FRAMES, "Objective: Unlock the door to beat the level. Watch out for the fast-moving ghost, though! It has a habit of throwing people around!", white);
+		}
 		
 		// Ghost-related stuff
 		if (ghost1.getVisibility()) {
@@ -138,8 +144,8 @@ public class Main{
 				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 2), "enemies to kill them.", white);
 				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 10), "Press Q to exit", white);
 			} else if (isDoorUnlockedDialogue) {
-				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 1), "Success! The door is unlocked! You beat the level! ", white);
-				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 2), "Thanks for playing!", white);
+				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 1), "Success! The door is unlocked! You beat the level! Thanks for", white);
+				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 2), "playing!", white);
 				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 10), "Press Esc to quit the game", white);
 			} else if (isDoorLockedDialogue) {
 				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 1), "Hmm... this door seems to be locked. There must be a key", white);
@@ -210,10 +216,6 @@ public class Main{
 		if (checkCollision(player.getPlayerBoundingBox(), ghost1.getDefensiveBoundingBox())) {
 			ghostReboundPlayer(player.getPlayerBoundingBox(), ghost1.getDefensiveBoundingBox());
 		}
-		
-		// Collision & rebound w/ key
-		
-		// Collision & rebound w/ treasure
 	}
 	
 	private static boolean checkCollision(BoundingBox box1, BoundingBox box2) {

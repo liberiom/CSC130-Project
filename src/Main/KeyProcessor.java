@@ -64,6 +64,10 @@ public class KeyProcessor{
 			}
 			break;
 			
+		/*
+		 * For anyone looking at the source code in here, the reason why there were uKeyEnabled, oKeyEnabled, etc. was because initially, inspecting each item prompted the player to press different keys (u, o, etc.).
+		 * But that's not what the assignment said to do, instead it said to use the space bar for all inspecting. 
+		 */
 		case '$':
 			if (spaceKeyEnabled) {
 				Ghost.getGhostTarget().hitAnimation(Main.player);
@@ -85,6 +89,7 @@ public class KeyProcessor{
 				}
 				if (Main.door.isDoorLocked()) {
 					isPaused = true;
+					Main.displayObjective = false; 
 					Main.isDialogBoxShowing = true;
 					Main.isDoorLockedDialogue = true;
 					// Pass to q
@@ -113,18 +118,6 @@ public class KeyProcessor{
 		case 'm':
 			// For mouse coordinates
 			Control.isMouseCoordsDisplayed = !Control.isMouseCoordsDisplayed;
-			break;
-			
-		case 'o':
-			
-			break;
-			
-		case 'u':
-			
-			break;
-			
-		case 'k':
-			
 			break;
 			
 		case 'q':

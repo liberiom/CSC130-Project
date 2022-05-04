@@ -28,6 +28,10 @@ public class Door {
 		return this.isLocked;
 	}
 	
+	public void setDoorLocked(boolean bool) {
+		this.isLocked = bool; 
+	}
+	
 	public BoundingBox getBoundingBox() {
 		return this.boundingBox;
 	}
@@ -39,4 +43,6 @@ public class Door {
 	public void spawnDialogueBoundingBox() {
 		this.dialogueBoundingBox = new BoundingBox(this.boundingBox.getX1(), this.boundingBox.getX2(), 70, 152);
 	}
+	
+	
 }

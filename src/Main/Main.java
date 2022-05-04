@@ -77,9 +77,8 @@ public class Main{
 	/* This is your access to the "game loop" (It is a "callback" method from the Control class (do NOT modify that class!))*/
 	public static void update(Control ctrl) {
 		ctrl.addSpriteToFrontBuffer(0, 0, "background");
-		// Debugging sysouts go here
-		// System.out.println(player.getPlayerBoundingBox().getX1() + " " + player.getPlayerBoundingBox().getY1());	
 		
+		// Ghost-related stuff
 		if (ghost1.getVisibility()) {
 			ctrl.addSpriteToFrontBuffer(ghost1.getSprite().getCoords().getX(), ghost1.getSprite().getCoords().getY(), ghost1.getSprite().getTag());
 			if (moveFrames < 20) {
@@ -139,13 +138,17 @@ public class Main{
 				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 2), "enemies to kill them.", white);
 				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 10), "Press Q to exit", white);
 			} else if (isDoorUnlockedDialogue) {
-				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 1), "You found a sword", white);
+				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 1), "Success! The door is unlocked! You beat the level! ", white);
+				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 2), "Thanks for playing!", white);
+				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 10), "Press Esc to quit the game", white);
+				
 			} else if (isDoorLockedDialogue) {
-				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 1), "Hmm... this door seems to be locked. There must be a key somewhere...", white);
+				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 1), "Hmm... this door seems to be locked. There must be a key", white);
 				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 2), "somewhere...", white);
 				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 10), "Press Q to quit", white);
 			} else if (isKeyDialog) {
-				
+				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 1), "Good job! You found the key!", white);
+				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 10), "Press Q to quit", white);
 			}
 		}
 		
@@ -191,6 +194,9 @@ public class Main{
 		if (checkCollision(player.getPlayerBoundingBox(), door.getDialogueBoundingBox())) {
 			ctrl.drawString(door.getSprite().getCoords().getX(), door.getBoundingBox().getY2(), "Press U to Open Door", white);
 			KeyProcessor.uKeyEnabled = true;
+			if (player.doesPlayerHaveSword() && player.doesPlayerHaveKey()) { // Last check to make sure that the player has the key AND sword before it is possible to unlock the door
+				door.setDoorLocked(false); // Unlocks the door
+			}
 		} else {
 			KeyProcessor.uKeyEnabled = false;
 		}

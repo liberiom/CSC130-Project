@@ -91,12 +91,19 @@ public class KeyProcessor{
 			
 		case 'u':
 			if (uKeyEnabled) {
-				isPaused = true;
-				Main.isDialogBoxShowing = true;
-				Main.isDoorLockedDialogue = true;
-				// Pass to q
-				qKeyEnabled = true;
-				uKeyEnabled = false;
+				if (Main.door.isDoorLocked()) {
+					isPaused = true;
+					Main.isDialogBoxShowing = true;
+					Main.isDoorLockedDialogue = true;
+					// Pass to q
+					qKeyEnabled = true;
+					uKeyEnabled = false;
+				} else {
+					isPaused = true;
+					Main.isDialogBoxShowing = true;
+					Main.isDoorUnlockedDialogue = true;
+					// No need to pass to Q here, the game is finished. The player would be guided to press the Esc key
+				}
 			}
 			break;
 			

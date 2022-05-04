@@ -91,6 +91,9 @@ public class KeyProcessor{
 			
 		case 'u':
 			if (uKeyEnabled) {
+				if (Main.player.doesPlayerHaveSword() && Main.player.doesPlayerHaveKey()) { // Last check to make sure that the player has the key AND sword before it is possible to unlock the door
+					Main.door.setDoorLocked(false); // Unlocks the door
+				}
 				if (Main.door.isDoorLocked()) {
 					isPaused = true;
 					Main.isDialogBoxShowing = true;

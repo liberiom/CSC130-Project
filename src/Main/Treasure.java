@@ -12,7 +12,7 @@ public class Treasure {
 	
 	public Treasure() {
 		sprite =  new spriteInfo(new Vector2D(rng.nextInt(1730 - 123) + 123, rng.nextInt(948 - 121) + 121), "treasure");
-		treasureBoundingBox = new BoundingBox(sprite.getCoords().getX() - 30, sprite.getCoords().getX() + 80, sprite.getCoords().getY() - 30, sprite.getCoords().getY() + 80);
+		treasureBoundingBox = new BoundingBox(sprite.getCoords().getX() - 80, sprite.getCoords().getX() + 80, sprite.getCoords().getY() - 80, sprite.getCoords().getY() + 80);
 		isTreasureVisible = true;
 	}
 	

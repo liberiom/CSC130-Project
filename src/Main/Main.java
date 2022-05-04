@@ -87,6 +87,7 @@ public class Main{
 		// Ghost-related stuff
 		if (ghost1.getVisibility()) {
 			ctrl.addSpriteToFrontBuffer(ghost1.getSprite().getCoords().getX(), ghost1.getSprite().getCoords().getY(), ghost1.getSprite().getTag());
+			System.out.println(moveFrames); // Debugging frames, don't mind this
 			if (moveFrames < 120) {
 				moveFrames++;
 			} else {
@@ -181,6 +182,7 @@ public class Main{
 			KeyProcessor.oKeyEnabled = false;
 		}
 		
+		// Checking player's collision against the ghost
 		if (checkCollision(player.getPlayerBoundingBox(), ghost1.getKey().getBoundingBox())) {
 			if (!tempHideString) {
 				ctrl.drawString(ghost1.getKey().getSprite().getCoords().getX() - 50,  ghost1.getKey().getSprite().getCoords().getY() + 70,  "Press Space to grab the key", white);

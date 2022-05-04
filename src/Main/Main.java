@@ -1,3 +1,30 @@
+/*
+ * CSC 130 Final Project
+ * Name: Liberio Mukdani
+ * Professor: Matthew Phillips
+ * 
+ * 
+ * 
+ * Requirements and verifying that I meet the requirements (I hope):
+ * 
+ * Algorithms:
+ * - Be a single screen “game” level (no scrolling)                                              -> Yes, should be obviously visible in runtime
+ * - Have a character that moves in all four(4) directions (up, down, left, right)              -> Yes, should be visible in my implementation of the wasd keys in KeyProcessor.java
+ * - Character must have animation equal to that in Checkpoint #3 for EACH direction!           -> Yes, when you move the character in any direction, the character also changes animation frames to make it look like its walking
+ * - The edges of the screen must be wall images that visually contain the “room”               -> Yes, the wall is supposed to look like a wall of ruins, since the place is supposed to have a  "haunted" appearance
+ * - Room must have a "ground" image (an image under the character's feet). No solid black!     -> Yes, the player is standing on "grass"
+ * - These images must have bounding box collision detection to prevent the player from walking through them                   -> Yes, the boundaryBoxes ArrayList below holds the boundary boxes for the borders of the level
+ * - There must be at least two (2) items inside of the “level” that can be examined when nearby and facing the object. Examining is done by looking at the item nearby and pressing the space bar           -> Yes, there are two items -- a key, a treasure box, and a door (if that counts), that all can be examined  
+ * - Your program must display a description of the item examined when a user inspects it 		-> Yes, each item, when inspected, should have a dialog box that pops up that explains what item can do
+ * - Your program must be free of errors, crashes, or warnings for credit 						-> Yes, or at least I hope so. I tested the program many times after the final edits have bene made, and there have been no errors thus far
+ * 
+ * Data Structures:
+ * - Use at least one of the following Java Collections: ArrayList, Stack, or Queue for image data 			-> Yes, in the Player class, there are four Queues that hold the image data that change when the player moves
+ * - Create a custom data type for the bounding box collision object (single bounding box with behavior) 	-> Yes, see BoundingBox,java
+ * - Have a container that holds a collection of bounding boxes neatly 										-> Yes, below has the boundaryBoxes ArrayList that holds bounding boxes
+ */
+
+
 package Main;
 
 import java.awt.Color;
@@ -16,12 +43,14 @@ import logic.Control;
 import timer.stopWatchX;
 
 public class Main{
-	// Fields (Static) below...
-	public static Treasure treasure;
+	/*
+	 * Static methods are below
+	 */
+	public static Treasure treasure; 														
 	public static Player player;
 	public static Door door;
 	private static Color white = new Color(255, 255, 255);
-	public static ArrayList<BoundingBox> boundaryBoxes = new ArrayList<BoundingBox>();
+	public static ArrayList<BoundingBox> boundaryBoxes = new ArrayList<BoundingBox>();			// This is an ArrayList that holds the locations of the Bounding Boxes of the walls 
 	private static spriteInfo dialogTextbox;	
 	public static boolean tempHideString = false;
 	public static boolean isDialogBoxShowing = false;
@@ -36,9 +65,8 @@ public class Main{
 	private static final int FINAL_SLASH_FRAMES = 30;
 	public static Ghost ghost1;
 	public static boolean displayObjective = true;
-	
-	// Add comment here
 	// End Static fields...
+	
 	public static void main(String[] args) {
 		Control ctrl = new Control();				// Do NOT remove!
 		ctrl.gameLoop();							// Do NOT remove!

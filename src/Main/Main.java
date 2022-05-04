@@ -23,9 +23,15 @@
  * - Create a custom data type for the bounding box collision object (single bounding box with behavior) 	-> Yes, see BoundingBox,java
  * - Have a container that holds a collection of bounding boxes neatly 										-> Yes, below has the boundaryBoxes ArrayList that holds bounding boxes
  * 
- * Player customization:
+ * 
+ *
+ * 
+ * Notes about programmer customization:
  * - To change the speed of the Ghost, change the GHOST_FRAMES int in the Main class
  * - To change the speed of the player, change the speed int located in the Player class
+ * 
+ * Note about saving this project:
+ * - Just a heads up to the future programmer editing this via Eclipse, saving any edits made in this class will prompt an error about unrecognizable characters. Just click "Save as UTF-8" characters, that's what worked for me.
  */
 
 

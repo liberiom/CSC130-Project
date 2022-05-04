@@ -81,7 +81,7 @@ public class Main{
 		
 		// Display Objective
 		if (displayObjective) {
-			ctrl.drawString(moveFrames, FINAL_SLASH_FRAMES, "Objective: Unlock the door to beat the level. Watch out for the fast-moving ghost, though! It has a habit of throwing people around!", white);
+			ctrl.drawString(54, 28, "Objective: Unlock the door to beat the level. Watch out for the fast-moving ghost, though! It has a habit of throwing people around!", white);
 		}
 		
 		// Ghost-related stuff

@@ -189,7 +189,7 @@ public class Main{
 		}
 		
 		// Door dialogue
-		if (checkCollision(player.getPlayerBoundingBox(), door.getDialogueBoundingBox())) {
+		if (checkCollision(player.getPlayerBoundingBox(), door.getDialogueBoundingBox()) && door.isDoorLocked()) {
 			ctrl.drawString(door.getSprite().getCoords().getX(), door.getBoundingBox().getY2(), "Press U to Open Door", white);
 			KeyProcessor.uKeyEnabled = true;
 		} else {

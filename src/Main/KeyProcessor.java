@@ -127,6 +127,7 @@ public class KeyProcessor{
 				Main.turnOffDialog();
 				// Pass the input to the user
 				isPaused = false;
+				qKeyEnabled = false; // Prevents the user from pressing Q at the end and unpausing the game
 			}
 			break;
 		}

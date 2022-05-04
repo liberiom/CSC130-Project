@@ -31,10 +31,9 @@ public class Main{
 	public static boolean isKeyDialog = false;
 	private static Random rng = new Random();
 	private static int thinning = 20;
-	private static ArrayList<Ghost> ghosts = new ArrayList<Ghost>();
 	private static int slashFrames1;
 	private static int moveFrames;
-	private static final int FINAL_SLASH_FRAMES = 60;
+	private static final int FINAL_SLASH_FRAMES = 30;
 	public static Ghost ghost1;
 	// Add comment here
 	// End Static fields...
@@ -141,7 +140,6 @@ public class Main{
 				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 1), "Success! The door is unlocked! You beat the level! ", white);
 				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 2), "Thanks for playing!", white);
 				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 10), "Press Esc to quit the game", white);
-				
 			} else if (isDoorLockedDialogue) {
 				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 1), "Hmm... this door seems to be locked. There must be a key", white);
 				ctrl.drawString(dialogBoxXCoord, dialogBoxYCoord + nextLine(lineSpacing, 2), "somewhere...", white);
@@ -194,9 +192,6 @@ public class Main{
 		if (checkCollision(player.getPlayerBoundingBox(), door.getDialogueBoundingBox())) {
 			ctrl.drawString(door.getSprite().getCoords().getX(), door.getBoundingBox().getY2(), "Press U to Open Door", white);
 			KeyProcessor.uKeyEnabled = true;
-			if (player.doesPlayerHaveSword() && player.doesPlayerHaveKey()) { // Last check to make sure that the player has the key AND sword before it is possible to unlock the door
-				door.setDoorLocked(false); // Unlocks the door
-			}
 		} else {
 			KeyProcessor.uKeyEnabled = false;
 		}

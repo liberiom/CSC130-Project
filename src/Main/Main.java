@@ -35,6 +35,7 @@ public class Main{
 	private static int moveFrames;
 	private static final int FINAL_SLASH_FRAMES = 30;
 	public static Ghost ghost1;
+	
 	// Add comment here
 	// End Static fields...
 	public static void main(String[] args) {
@@ -167,7 +168,7 @@ public class Main{
 		// Checking the player's collision against chests
 		if (checkCollision(player.getPlayerBoundingBox(), treasure.getBoundingBox())) {
 			if (!tempHideString) {
-				ctrl.drawString(treasure.getSprite().getCoords().getX() - 50, treasure.getSprite().getCoords().getY() + 70, "Press O to open the chest", white);
+				ctrl.drawString(treasure.getSprite().getCoords().getX() - 50, treasure.getSprite().getCoords().getY() + 70, "Press Space to open the chest", white);
 			}
 			KeyProcessor.oKeyEnabled = true;
 		} else {
@@ -176,7 +177,7 @@ public class Main{
 		
 		if (checkCollision(player.getPlayerBoundingBox(), ghost1.getKey().getBoundingBox())) {
 			if (!tempHideString) {
-				ctrl.drawString(ghost1.getKey().getSprite().getCoords().getX() - 50,  ghost1.getKey().getSprite().getCoords().getY() + 70,  "Press K to grab the key", white);
+				ctrl.drawString(ghost1.getKey().getSprite().getCoords().getX() - 50,  ghost1.getKey().getSprite().getCoords().getY() + 70,  "Press Space to grab the key", white);
 			}
 			KeyProcessor.kKeyEnabled = true;
 		} else {
@@ -190,7 +191,7 @@ public class Main{
 		
 		// Door dialogue
 		if (checkCollision(player.getPlayerBoundingBox(), door.getDialogueBoundingBox()) && door.isDoorLocked()) {
-			ctrl.drawString(door.getSprite().getCoords().getX(), door.getBoundingBox().getY2(), "Press U to Open Door", white);
+			ctrl.drawString(door.getSprite().getCoords().getX(), door.getBoundingBox().getY2(), "Press Space to Open Door", white);
 			KeyProcessor.uKeyEnabled = true;
 		} else {
 			KeyProcessor.uKeyEnabled = false;
@@ -210,6 +211,9 @@ public class Main{
 			ghostReboundPlayer(player.getPlayerBoundingBox(), ghost1.getDefensiveBoundingBox());
 		}
 		
+		// Collision & rebound w/ key
+		
+		// Collision & rebound w/ treasure
 	}
 	
 	private static boolean checkCollision(BoundingBox box1, BoundingBox box2) {

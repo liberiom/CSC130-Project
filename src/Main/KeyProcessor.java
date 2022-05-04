@@ -68,14 +68,6 @@ public class KeyProcessor{
 			if (spaceKeyEnabled) {
 				Ghost.getGhostTarget().hitAnimation(Main.player);
 			}
-			break;
-			
-		case 'm':
-			// For mouse coordinates
-			Control.isMouseCoordsDisplayed = !Control.isMouseCoordsDisplayed;
-			break;
-			
-		case 'o':
 			if (oKeyEnabled) {
 				Main.player.setPlayerHaveSword(true);
 				Main.treasure.destroyBoundingBox();
@@ -87,9 +79,6 @@ public class KeyProcessor{
 				qKeyEnabled = true;
 				oKeyEnabled = false;
 			}
-			break;
-			
-		case 'u':
 			if (uKeyEnabled) {
 				if (Main.player.doesPlayerHaveSword() && Main.player.doesPlayerHaveKey()) { // Last check to make sure that the player has the key AND sword before it is possible to unlock the door
 					Main.door.setDoorLocked(false); // Unlocks the door
@@ -108,9 +97,6 @@ public class KeyProcessor{
 					// No need to pass to Q here, the game is finished. The player would be guided to press the Esc key
 				}
 			}
-			break;
-			
-		case 'k':
 			if (kKeyEnabled) {
 				Main.player.setPlayerKeyStatus(true);
 				Main.ghost1.getKey().destroyBoundingBox();
@@ -122,6 +108,23 @@ public class KeyProcessor{
 				qKeyEnabled = true;
 				kKeyEnabled = false;
 			}
+			break;
+			
+		case 'm':
+			// For mouse coordinates
+			Control.isMouseCoordsDisplayed = !Control.isMouseCoordsDisplayed;
+			break;
+			
+		case 'o':
+			
+			break;
+			
+		case 'u':
+			
+			break;
+			
+		case 'k':
+			
 			break;
 			
 		case 'q':
